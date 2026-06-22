@@ -1,4 +1,16 @@
 #include "Game.h"
+#include <SFML/Window/Clipboard.hpp>
+#include <Windows.h>
+#include <shellapi.h>
+
+namespace
+{
+	bool openCreditLink(const std::string& url)
+	{
+		const HINSTANCE result = ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, SW_SHOWNORMAL);
+		return reinterpret_cast<INT_PTR>(result) > 32;
+	}
+}
 
 // Handle inputs in main menu
 void Game::handleMainMenuInput(const sf::Event& ev)
@@ -131,13 +143,48 @@ void Game::handleQuitConfirmationInput(const sf::Event& ev)
 // Handle inputs in credits menu
 void Game::handleCreditsMenuInput(const sf::Event& ev)
 {
-	if (ev.key.code == sf::Keyboard::Return)
+	if (ev.key.code == sf::Keyboard::Up)
 	{
-		this->gameState = MAIN_MENU;
+		for (int i = this->selectedCreditLine - 1; i >= 0; --i)
+		{
+			if (!this->creditLines[static_cast<std::size_t>(i)].url.empty())
+			{
+				this->selectedCreditLine = i;
+				this->creditsStatusText.setString("");
+				this->menuSound.play();
+				break;
+			}
+		}
 	}
+
+	if (ev.key.code == sf::Keyboard::Down)
+	{
+		for (std::size_t i = static_cast<std::size_t>(this->selectedCreditLine + 1); i < this->creditLines.size(); ++i)
+		{
+			if (!this->creditLines[i].url.empty())
+			{
+				this->selectedCreditLine = static_cast<int>(i);
+				this->creditsStatusText.setString("");
+				this->menuSound.play();
+				break;
+			}
+		}
+	}
+
+	if (ev.key.code == sf::Keyboard::Return || ev.key.code == sf::Keyboard::Enter)
+	{
+		const std::string& url = this->creditLines[static_cast<std::size_t>(this->selectedCreditLine)].url;
+		sf::Clipboard::setString(sf::String::fromUtf8(url.begin(), url.end()));
+		this->creditsStatusText.setString("Copied to clipboard!");
+		openCreditLink(url);
+	}
+
 	if (ev.key.code == sf::Keyboard::Escape)
 	{
 		this->gameState = MAIN_MENU;
+		this->selectedMenuItem = 0;
+		this->selectedCreditLine = 1;
+		this->creditsStatusText.setString("");
 	}
 }
 
@@ -453,7 +500,7 @@ void Game::handleShopMenuInput(const sf::Event& ev)
 				{
 					gameData.equipedship = 6;
 					updateGameData(gameData);
-					this->player->setFireColor(gameData.equipedfire);
+					this->player->setShipColor(gameData.equipedship);
 					this->equipSound.play();
 				}
 				break;
@@ -484,6 +531,9 @@ void Game::handleShopMenuInput(const sf::Event& ev)
 		default:
 			break;
 		}
+
+		this->updateShopUnlocks();
+		updateGameData(this->gameData);
 	}
 }
 

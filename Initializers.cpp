@@ -37,30 +37,6 @@ void Game::initializeTextures()
 		std::cout << "TEXTURE::BULLET::FAILED_TO_LOAD" << "\n";
 	}
 
-	this->textures["GREENALIEN"] = new sf::Texture();
-	if (!this->textures["GREENALIEN"]->loadFromFile("Textures/Greenalienfix.png"))
-	{
-		std::cout << "TEXTURE::GREEN_ALIEN::FAILED_TO_LOAD" << "\n";
-	}
-
-	this->textures["BLUEALIEN"] = new sf::Texture();
-	if (!this->textures["BLUEALIEN"]->loadFromFile("Textures/Bluealienfix.png"))
-	{
-		std::cout << "TEXTURE::BLUE_ALIEN::FAILED_TO_LOAD" << "\n";
-	}
-
-	this->textures["YELLOWALIEN"] = new sf::Texture();
-	if (!this->textures["YELLOWALIEN"]->loadFromFile("Textures/Yellowalienfix.png"))
-	{
-		std::cout << "TEXTURE::YELLOW_ALIEN::FAILED_TO_LOAD" << "\n";
-	}
-
-	this->textures["HEALTH"] = new sf::Texture();
-	if (!this->textures["HEALTH"]->loadFromFile("Textures/Heart.png"))
-	{
-		std::cout << "TEXTURE::HEART::FAILED_TO_LOAD" << "\n";
-	}
-
 	this->textures["REDBALL"] = new sf::Texture();
 	if(!this->textures["REDBALL"]->loadFromFile("Textures/Ball1.png"))
 	{
@@ -381,26 +357,26 @@ void Game::initializeSounds()
 
 void Game::initializeSoundFXVolume()
 {
-	this->laserSound.setVolume(this->soundfxVolume * 3.0f); // 12.5
-	this->levelup.setVolume(this->soundfxVolume * 25);
-	this->shield.setVolume(this->soundfxVolume * 50);
-	this->bossLaser.setVolume(this->soundfxVolume * 3);
-	this->explosionSound.setVolume(this->soundfxVolume * 15);
-	this->criticalHit.setVolume(this->soundfxVolume * 15);
-	this->clangHit.setVolume(this->soundfxVolume * 15);
-	this->healSound.setVolume(this->soundfxVolume * 5);
-	this->powerUpSound.setVolume(this->soundfxVolume * 5);
-	this->swooshSound.setVolume(this->soundfxVolume * 50);
-	this->pauseSound.setVolume(this->soundfxVolume * 10); // 50
-	this->alienHit.setVolume(this->soundfxVolume * 6); // 30
-	this->playerHit.setVolume(this->soundfxVolume * 7); // 35
-	this->menuSound.setVolume(this->soundfxVolume * 10); // 50
-	this->buySound.setVolume(this->soundfxVolume * 50);
-	this->noMoneySound.setVolume(this->soundfxVolume * 25);
-	this->equipSound.setVolume(this->soundfxVolume * 15);
-	this->deathbeamSound.setVolume(this->soundfxVolume * 15);
-	this->difficultySetSound.setVolume(this->soundfxVolume * 15);
-	this->boss->setVolumeSFX(soundfxVolume);
+	this->laserSound.setVolume(this->clampVolume(this->soundfxVolume * 3.0f));
+	this->levelup.setVolume(this->clampVolume(this->soundfxVolume * 25.f));
+	this->shield.setVolume(this->clampVolume(this->soundfxVolume * 50.f));
+	this->bossLaser.setVolume(this->clampVolume(this->soundfxVolume * 3.f));
+	this->explosionSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->criticalHit.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->clangHit.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->healSound.setVolume(this->clampVolume(this->soundfxVolume * 5.f));
+	this->powerUpSound.setVolume(this->clampVolume(this->soundfxVolume * 5.f));
+	this->swooshSound.setVolume(this->clampVolume(this->soundfxVolume * 50.f));
+	this->pauseSound.setVolume(this->clampVolume(this->soundfxVolume * 10.f));
+	this->alienHit.setVolume(this->clampVolume(this->soundfxVolume * 6.f));
+	this->playerHit.setVolume(this->clampVolume(this->soundfxVolume * 7.f));
+	this->menuSound.setVolume(this->clampVolume(this->soundfxVolume * 10.f));
+	this->buySound.setVolume(this->clampVolume(this->soundfxVolume * 50.f));
+	this->noMoneySound.setVolume(this->clampVolume(this->soundfxVolume * 25.f));
+	this->equipSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->deathbeamSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->difficultySetSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->boss->setVolumeSFX(this->clampVolume(this->soundfxVolume * 15.f));
 }
 
 void Game::initializeMusic()
@@ -427,10 +403,10 @@ void Game::initializeMusic()
 
 void Game::initializeMusicVolume()
 {
-	this->stageMusic.setVolume(this->musicVolume * 6); // 30
-	this->gameOverMusic.setVolume(this->musicVolume * 12); // 30
-	this->victoryTune.setVolume(this->musicVolume * 6); // 30
-	this->menuMusic.setVolume(this->musicVolume * 6); // 30
+	this->stageMusic.setVolume(this->clampVolume(this->musicVolume * 6.f));
+	this->gameOverMusic.setVolume(this->clampVolume(this->musicVolume * 12.f));
+	this->victoryTune.setVolume(this->clampVolume(this->musicVolume * 6.f));
+	this->menuMusic.setVolume(this->clampVolume(this->musicVolume * 6.f));
 }
 
 void Game::initializeGUI()
@@ -683,6 +659,8 @@ void Game::initializeGameData()
 	gameData.coins = readData.coins;
 	gameData.highScore = readData.highScore;
 	gameData.normalVictory = readData.normalVictory;
+	gameData.gameCompleted = readData.gameCompleted;
+	gameData.hellVictory = readData.hellVictory;
 	gameData.equipedbullet = readData.equipedbullet;
 	gameData.redbullet = readData.redbullet;
 	gameData.bluebullet = readData.bluebullet;
@@ -704,6 +682,7 @@ void Game::initializeGameData()
 	gameData.yellowfire = readData.yellowfire;
 	gameData.greenfire = readData.greenfire;
 	gameData.whitefire = readData.whitefire;
+	this->updateShopUnlocks();
 
 }
 
@@ -1383,45 +1362,28 @@ void Game::initializeCreditsMenu()
 	this->creditsTitle.setPosition
 	(
 		this->window->getSize().x / 2.f - this->creditsTitle.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->creditsTitle.getGlobalBounds().height / 2.f - 350.f
+		10.f
 	);
 
-	this->gamedevcreditsText.setFont(this->font);
-	this->gamedevcreditsText.setCharacterSize(48);
-	this->gamedevcreditsText.setFillColor(sf::Color::White);
-	this->gamedevcreditsText.setString("Developed by Sebastian Perez & Alejandro Adorno");
-	this->gamedevcreditsText.setPosition(
-		this->window->getSize().x / 2.f - this->gamedevcreditsText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->gamedevcreditsText.getGlobalBounds().height / 2.f - 250.f
+	this->creditLineText.setFont(this->font);
+	this->creditLineText.setCharacterSize(28);
+
+	this->creditsInstructionsText.setFont(this->font);
+	this->creditsInstructionsText.setCharacterSize(20);
+	this->creditsInstructionsText.setFillColor(sf::Color::White);
+	this->creditsInstructionsText.setString("UP/DOWN: Select    ENTER: Open link    ESC: Return");
+	this->creditsInstructionsText.setPosition(
+		this->window->getSize().x / 2.f - this->creditsInstructionsText.getGlobalBounds().width / 2.f,
+		752.f
 	);
 
-	this->listofcredits1Text.setFont(this->font);
-	this->listofcredits1Text.setCharacterSize(24);
-	this->listofcredits1Text.setFillColor(sf::Color::White);
-	this->listofcredits1Text.setString("ASSETS\nVoid Main Ship:\nFoozle, Itch.io\nLaser 2020:\nWenrexa, Itch.io\nPixel Space Background Generator:\nDeep-Fold, Itch.io\nVoid Environment Pack:\nFoozle, Itch.io\nCelestial Objects Pixel Art:\nNorma2D, Itch.io\nSpaceship Shooter Environment:\nAnsimuz, Itch.io\nVoid - Feet Pack 2 - Nairan:\nFoozle, Itch.io\nVoid - Fleet Pack 1 - Kla'ed:\nFoozle, Itch.io\nSOUNDS\nMenu Sound 5:\nApenguin73, Freesound.org\nSword Hit:\nqubodup, Freesound.org");
-	this->listofcredits1Text.setPosition(
-		this->window->getSize().x / 2.f - this->listofcredits1Text.getGlobalBounds().width / 2.f - 300.f,
-		this->window->getSize().y / 2.f - this->listofcredits1Text.getGlobalBounds().height / 2.f + 40.f
-	);
+	this->creditsStatusText.setFont(this->font);
+	this->creditsStatusText.setCharacterSize(18);
+	this->creditsStatusText.setFillColor(sf::Color::Yellow);
+	this->creditsStatusText.setString("");
+	this->creditsStatusText.setPosition(25.f, 720.f);
 
-	this->listofcredits2Text.setFont(this->font);
-	this->listofcredits2Text.setCharacterSize(24);
-	this->listofcredits2Text.setFillColor(sf::Color::White);
-	this->listofcredits2Text.setString("Bouncing Power Up 1_5:\nJoao_Janz, Freesound.org\nLaser zap:\nPixabay, Pixabay.com\nPistol Shot:\nLeMudCrab, Freesound.org\nExplosion:\nqubodup, Freesound.otg\npauseStart:\nWagna, Freesound.org\nHeal - Rpg:\ncolorsCrimsonTears, Freesound.org\nPowerup 10:\nMATRIXXX_, Freesound.org\nswoosh-2:\nlesaucisson, Freesound.org\nmetal bowl - hit - with wooden spoon 01:\nAnthousai, Freesound.org\nSpace Shooter Music:\nOblidivm, Opengameart.org\nhttps://opengameart.org/content/space-shooter-music");
-	this->listofcredits2Text.setPosition(
-		this->window->getSize().x / 2.f - this->listofcredits2Text.getGlobalBounds().width / 2.f + 100.f,
-		this->window->getSize().y / 2.f - this->listofcredits2Text.getGlobalBounds().height / 2.f + 25.f
-	);
-
-	this->listofcredits3Text.setFont(this->font);
-	this->listofcredits3Text.setCharacterSize(26);
-	this->listofcredits3Text.setFillColor(sf::Color::White);
-	this->listofcredits3Text.setString("Spacey 1up/Power up:\nGameAudio, Freesound.org\nBuying Sounds:\nwobesound, Freesound.org\nWrong:\nRaclure, Freesound.org\nGeneric Rifle Cock:\nGameWithBepis, Freesound.org");
-	this->listofcredits3Text.setPosition(
-		this->window->getSize().x / 2.f - this->listofcredits3Text.getGlobalBounds().width / 2.f + 350.f,
-		this->window->getSize().y / 2.f - this->listofcredits3Text.getGlobalBounds().height / 2.f - 122.f
-	);
-
+	// This shared return label remains on the tutorial screen.
 	this->returnfromcreditsText.setFont(this->font);
 	this->returnfromcreditsText.setCharacterSize(48);
 	this->returnfromcreditsText.setFillColor(sf::Color::Yellow);
@@ -1430,6 +1392,51 @@ void Game::initializeCreditsMenu()
 		this->window->getSize().x / 2.f - this->returnfromcreditsText.getGlobalBounds().width / 2.f,
 		this->window->getSize().y / 2.f - this->returnfromcreditsText.getGlobalBounds().height / 2.f + 300.f
 	);
+
+	this->creditLines =
+	{
+		{ "--- SPRITES ---", "" },
+		{ "Stage 1 Boss - Void Fleet Pack 2 by Foozle", "https://foozlecc.itch.io/void-fleet-pack-2" },
+		{ "Stage 2 Boss & Enemies - Void Fleet Pack 1 by Foozle", "https://foozlecc.itch.io/void-fleet-pack-1" },
+		{ "Stage 3 Boss & Enemies - Void Fleet Pack 3 by Foozle", "https://foozlecc.itch.io/void-fleet-pack-3" },
+		{ "Player Spaceship & Shield - Void Main Ship by Foozle", "https://foozlecc.itch.io/void-main-ship" },
+		{ "Health Bar - Basic Pixel Health Bar by BDragon1727", "https://bdragon1727.itch.io/basic-pixel-health-bar-and-scroll-bar" },
+		{ "Lasers - Laser 2020 by Wenrexa", "https://wenrexa.itch.io/laser2020" },
+		{ "Background - Space Background Generator by Deep-Fold", "https://deep-fold.itch.io/space-background-generator" },
+		{ "End Screen Planet - Pixel Planet Generator by Deep-Fold", "https://deep-fold.itch.io/pixel-planet-generator" },
+		{ "Asteroid - Void Environment Pack by Foozle", "https://foozlecc.itch.io/void-environment-pack" },
+		{ "Buff Sprites - Celestial Objects by Useless Pursuit", "https://uselesspursuit.itch.io/celestial-objects-pixel-art-pack" },
+		{ "Stage 1 Enemies - Spaceship Shooter Environment by Ansimuz", "https://ansimuz.itch.io/spaceship-shooter-environment" },
+
+		{ "--- FONTS ---", "" },
+		{ "Debrosee", "https://www.dafont.com/debrosee.font" },
+		{ "Pixellettersfull", "https://www.wfonts.com/font/pixellettersfull" },
+
+		{ "--- MUSIC ---", "" },
+		{ "Space Shooter Music - MUSIC BY OBLIDIVM http://oblidivmmusic.blogspot.com.es/", "https://opengameart.org/content/space-shooter-music" },
+		{ "Unchained Destiny (Rock) - nene", "https://opengameart.org/content/unchained-destiny-rock" },
+
+		{ "--- SFX ---", "" },
+		{ "Menu Button - Apenguin73", "https://freesound.org/people/Apenguin73/sounds/428132/" },
+		{ "Enemy Hit - LeMudCrab", "https://freesound.org/people/LeMudCrab/sounds/163456/" },
+		{ "Player Hit - qubodup", "https://freesound.org/people/qubodup/sounds/182429/" },
+		{ "Pause - Wagna", "https://freesound.org/people/Wagna/sounds/326418/" },
+		{ "Heal - colorsCrimsonTears", "https://freesound.org/people/colorsCrimsonTears/sounds/562292/" },
+		{ "Power Up - MATRIXXX_", "https://freesound.org/people/MATRIXXX_/sounds/523654/" },
+		{ "Lane Switch - lesaucisson", "https://freesound.org/people/lesaucisson/sounds/585256/" },
+		{ "Boss Hit - Anthousai", "https://freesound.org/people/Anthousai/sounds/405665/" },
+		{ "Heavy Player Hit - qubodup", "https://freesound.org/people/qubodup/sounds/442769/" },
+		{ "Boss Laser - Pixabay", "https://pixabay.com/sound-effects/laser-zap-90575/" },
+		{ "Shield - Joao_Janz", "https://freesound.org/people/Joao_Janz/sounds/478342/" },
+		{ "Kill Counter Max - GameAudio", "https://freesound.org/people/GameAudio/sounds/220173/" },
+		{ "Buy - wobesound", "https://freesound.org/people/wobesound/sounds/488377/" },
+		{ "Insufficient Money - Raclure", "https://freesound.org/people/Raclure/sounds/483598/" },
+		{ "Equip - GameWithBepis", "https://freesound.org/people/GameWithBepis/sounds/561471/" },
+		{ "Set Difficulty - Pixabay", "https://pixabay.com/sound-effects/menu-button-89141/" },
+		{ "Second Boss Warning - StavSounds", "https://freesound.org/people/StavSounds/sounds/701702/" }
+	};
+
+	this->selectedCreditLine = 1;
 }
 
 void Game::initializeWindow()
@@ -1440,6 +1447,16 @@ void Game::initializeWindow()
 
 	this->window = new sf::RenderWindow(this->videoMode, "Astral Attack", sf::Style::Close | sf::Style::Titlebar);
 	this->view = this->window->getDefaultView();
+
+	sf::Image windowIcon;
+	if (windowIcon.loadFromFile("Textures/Mainship.png"))
+	{
+		this->window->setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
+	}
+	else
+	{
+		std::cout << "ICON::MAIN_SHIP::FAILED_TO_LOAD" << "\n";
+	}
 
 	this->window->setFramerateLimit(60);
 	this->window->setVerticalSyncEnabled(true);
@@ -1461,7 +1478,7 @@ void Game::initializeStage()
 	this->checkerSix = true;
 	this->checkerSeven = true;
 	this->cutscene = false;
-	this->Stage = 2;
+	this->Stage = 1;
 
 
 }

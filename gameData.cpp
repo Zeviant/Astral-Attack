@@ -2,15 +2,52 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include <filesystem>
+#include <cstdlib>
+
+namespace
+{
+    namespace fs = std::filesystem;
+
+    const fs::path legacySavePath = fs::path("Data") / "gamedata.txt";
+
+    fs::path getSavePath()
+    {
+        char* localAppData = nullptr;
+        std::size_t length = 0;
+
+        if (_dupenv_s(&localAppData, &length, "LOCALAPPDATA") == 0 && localAppData != nullptr)
+        {
+            const fs::path savePath = fs::path(localAppData) / "Astral Attack" / "gamedata.txt";
+            std::free(localAppData);
+            return savePath;
+        }
+
+        std::free(localAppData);
+        return legacySavePath;
+    }
+}
 
 // Save game data
 void updateGameData(const GameData& data)
 {
-    std::ofstream outFile("Data/gamedata.txt");
+    const std::filesystem::path savePath = getSavePath();
+    std::error_code error;
+    std::filesystem::create_directories(savePath.parent_path(), error);
+
+    if (error)
+    {
+        std::cerr << "Unable to create save directory: " << error.message() << '\n';
+        return;
+    }
+
+    std::ofstream outFile(savePath);
     if (outFile.is_open()) {
         outFile << "coins = " << data.coins << '\n';
         outFile << "high-score = " << data.highScore << '\n';
         outFile << "normalVictory = " << data.normalVictory << '\n';
+        outFile << "gameCompleted = " << data.gameCompleted << '\n';
+        outFile << "hellVictory = " << data.hellVictory << '\n';
         outFile << "equipedbullet = " << data.equipedbullet << '\n';
         outFile << "redbullet = " << data.redbullet << '\n';
         outFile << "bluebullet = " << data.bluebullet << '\n';
@@ -42,9 +79,17 @@ void updateGameData(const GameData& data)
 // Load game data
 GameData readFromFile() {
     GameData data;
-    std::ifstream inFile("Data/gamedata.txt");
+    const std::filesystem::path savePath = getSavePath();
+    bool migrateLegacySave = false;
+    std::ifstream inFile(savePath);
+
+    if (!inFile.is_open() && savePath != legacySavePath) {
+        inFile.open(legacySavePath);
+        migrateLegacySave = inFile.is_open();
+    }
+
     if (!inFile.is_open()) {
-        std::cerr << "Unable to open file for reading\n";
+        updateGameData(data);
         return data;
     }
         std::string line;
@@ -59,6 +104,16 @@ GameData readFromFile() {
         else if (line.find("normalVictory = ") == 0)
         {
             data.normalVictory = std::stoul(line.substr(16));
+        }
+
+        else if (line.find("gameCompleted = ") == 0)
+        {
+            data.gameCompleted = std::stoul(line.substr(16));
+        }
+
+        else if (line.find("hellVictory = ") == 0)
+        {
+            data.hellVictory = std::stoul(line.substr(14));
         }
 
         else if (line.find("equipedbullet = ") == 0) {
@@ -127,42 +182,16 @@ GameData readFromFile() {
 
         }
         inFile.close();
+
+    if (migrateLegacySave) {
+        updateGameData(data);
+    }
+
     return data;
 }
 
 // Reset game data
 void resetGameData()
 {
-    std::ofstream outFile("Data/gamedata.txt");
-    if (outFile.is_open()) {
-        outFile << "coins = " << "0" << '\n';
-        outFile << "high-score = " << 0 << '\n';
-        outFile << "normalVictory = " << 0 << '\n';
-        outFile << "equipedbullet = " << 0 << '\n';
-        outFile << "redbullet = " << "ACQUIRED" << '\n';
-        outFile << "bluebullet = " << "NULL" << '\n';
-        outFile << "greenbullet = " << "NULL" << '\n';
-        outFile << "yellowbullet = " << "NULL" << '\n';
-        outFile << "purplebullet = " << "NULL" << '\n';
-        outFile << "whitebullet = " << "NULL" << '\n';
-        outFile << "blackbullet = " << "NULL" << '\n';
-        outFile << "equipedship = " << 0 << '\n';
-        outFile << "normalship = " << "ACQUIRED" << '\n';
-        outFile << "blueship = " << "NULL" << '\n';
-        outFile << "greenship = " << "NULL" << '\n';
-        outFile << "yellowship = " << "NULL" << '\n';
-        outFile << "purpleship = " << "NULL" << '\n';
-        outFile << "redship = " << "NULL" << '\n';
-        outFile << "blackship = " << "NULL" << '\n';
-        outFile << "equipedfire = " << 0 << '\n';
-        outFile << "normalfire = " << "ACQUIRED" << '\n';
-        outFile << "yellowfire = " << "NULL" << '\n';
-        outFile << "greenfire = " << "NULL" << '\n';
-        outFile << "whitefire = " << "NULL" << '\n';
-
-        outFile.close();
-    }
-    else {
-        std::cerr << "Unable to open file for writing\n";
-    }
+    updateGameData(GameData{});
 }

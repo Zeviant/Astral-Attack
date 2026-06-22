@@ -4,7 +4,7 @@
 
 // Boss class definition
 Boss::Boss(float initialHealth, float initialMoveSpeed, int type)
-    : health(initialHealth), moveSpeed(initialMoveSpeed), isMovingInLoop(false), angle(0.f), isDefeated(false), defeatTimer(0.f)
+    : health(initialHealth), moveSpeed(initialMoveSpeed), isMovingInLoop(false), angle(0.f), isDefeated(false), defeatTimer(0.f), volumeSFX(50.f)
 {
     this->type = type;
 
@@ -134,7 +134,7 @@ Boss::Boss(float initialHealth, float initialMoveSpeed, int type)
     }
     this->dirSwapSound.setBuffer(this->dirSwapBuffer);
 
-    this->dirSwapSound.setVolume(this->volumeSFX * 15);
+    this->dirSwapSound.setVolume(this->volumeSFX);
 }
 
 Boss::~Boss()
@@ -273,7 +273,7 @@ void Boss::update(float deltaTime)
 
 void Boss::setVolumeSFX(float volume)
 {
-    volumeSFX = volume;
+    volumeSFX = std::clamp(volume, 0.f, 100.f);
 }
 
 // Player pos receiver (Necessary for thid boss)

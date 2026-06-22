@@ -1,4 +1,5 @@
 #include "Game.h"
+#include <algorithm>
 
 // All initializers
 void Game::initialize()
@@ -9,6 +10,7 @@ void Game::initialize()
 	this->initializeStage();
 	this->initializeTextures();
 	this->initializeSounds();
+	this->initializeGameData();
 	this->initializePlayer();
 	this->initializeSpawnRates();
 	this->initializeEnemy();
@@ -25,7 +27,6 @@ void Game::initialize()
 	this->initializeFadeEffects();
 	this->initializeTutorialMenu();
 	this->initializeDifficultyMenu();
-	this->initializeGameData();
 	this->initializeShopMenu();
 	this->initializeShieldDisplay();
 	this->initializeMusicVolume();
@@ -213,6 +214,53 @@ float Game::getSoundFx()
 	return soundfxVolume;
 }
 
+float Game::clampVolume(float volume) const
+{
+	return std::clamp(volume, 0.f, 100.f);
+}
+
+void Game::updateShopUnlocks()
+{
+	bool saveChanged = false;
+
+	if (this->gameData.gameCompleted && this->gameData.blackship != "ACQUIRED")
+	{
+		this->gameData.blackship = "ACQUIRED";
+		saveChanged = true;
+	}
+
+	if (this->gameData.hellVictory && this->gameData.whitefire != "ACQUIRED")
+	{
+		this->gameData.whitefire = "ACQUIRED";
+		saveChanged = true;
+	}
+
+	const bool allPurchasableItemsAcquired =
+		this->gameData.bluebullet == "ACQUIRED" &&
+		this->gameData.greenbullet == "ACQUIRED" &&
+		this->gameData.yellowbullet == "ACQUIRED" &&
+		this->gameData.purplebullet == "ACQUIRED" &&
+		this->gameData.whitebullet == "ACQUIRED" &&
+		this->gameData.blueship == "ACQUIRED" &&
+		this->gameData.greenship == "ACQUIRED" &&
+		this->gameData.yellowship == "ACQUIRED" &&
+		this->gameData.purpleship == "ACQUIRED" &&
+		this->gameData.redship == "ACQUIRED" &&
+		this->gameData.yellowfire == "ACQUIRED" &&
+		this->gameData.greenfire == "ACQUIRED";
+
+	if (allPurchasableItemsAcquired && this->gameData.blackbullet != "ACQUIRED")
+	{
+		this->gameData.blackbullet = "ACQUIRED";
+		saveChanged = true;
+	}
+
+	if (saveChanged)
+	{
+		updateGameData(this->gameData);
+	}
+}
+
 // Check inputs & events
 void Game::updatePollEvents()
 {
@@ -251,6 +299,7 @@ void Game::updatePollEvents()
 				break;
 			case CREDITS:
 				handleCreditsMenuInput(ev);
+				break;
 			case TUTORIAL:
 				handleTutorialMenuInput(ev);
 				break;

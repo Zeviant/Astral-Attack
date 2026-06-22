@@ -105,10 +105,6 @@ private:
     sf::Sprite shieldIcon;
     sf::RectangleShape playerHpBar;
     sf::RectangleShape playerHpBarBack;
-    sf::Texture heartTexture;
-    sf::Sprite heartSprite;
-
-
     // Enemies
     float spawnTimer;
     float spawnTimerMax;
@@ -265,6 +261,8 @@ private:
     void initializeShieldDisplay();
     void initializeItems();
     void initializePlayer();
+    float clampVolume(float volume) const;
+    void updateShopUnlocks();
 
     // Game menu input handling
     void handleCreditsMenuInput(const sf::Event& ev);
@@ -344,11 +342,18 @@ private:
     sf::Text mainmenuText;
 
     // Credits Menu
-    sf::Text gamedevcreditsText;
-    sf::Text listofcredits1Text;
-    sf::Text listofcredits2Text;
-    sf::Text listofcredits3Text;
+    struct CreditLine
+    {
+        std::string label;
+        std::string url;
+    };
+
+    sf::Text creditLineText;
+    sf::Text creditsInstructionsText;
+    sf::Text creditsStatusText;
     sf::Text returnfromcreditsText;
+    std::vector<CreditLine> creditLines;
+    int selectedCreditLine;
 
     // Difficulty menu
     sf::Text easyText;

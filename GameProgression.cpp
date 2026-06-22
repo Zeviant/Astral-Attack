@@ -506,7 +506,7 @@ void Game::updateDifficulty()
 				std::cout << "ERROR::EMPTY::FAILED_TO_LOAD" << "\n";
 			}
 			this->stageMusic.play();
-			this->stageMusic.setVolume(this->musicVolume * 12);
+			this->stageMusic.setVolume(this->clampVolume(this->musicVolume * 12.f));
 		}
 
 		if (elapsedTime >= timeStamp + 10.f && checkerFive && stage2End)
@@ -761,7 +761,7 @@ void Game::updateDifficulty()
 				std::cout << "ERROR::BOSSMUSIC::FAILED_TO_LOAD" << "\n";
 			}
 			this->stageMusic.play();
-			this->stageMusic.setVolume(this->musicVolume * 20);
+			this->stageMusic.setVolume(this->clampVolume(this->musicVolume * 20.f));
 
 			this->backgroundScrollSpeed = 4.0f;
 			checkerFour = false;
@@ -798,7 +798,7 @@ void Game::updateDifficulty()
 				std::cout << "ERROR::BOSSMUSIC::FAILED_TO_LOAD" << "\n";
 			}
 			this->stageMusic.play();
-			this->stageMusic.setVolume(this->musicVolume * 20);
+			this->stageMusic.setVolume(this->clampVolume(this->musicVolume * 20.f));
 			this->stageMusic.setLoop(true);
 
 			this->cutscene = false;
@@ -892,6 +892,18 @@ void Game::updateDifficulty()
 				this->gameData.coins = gameData.coins + 5000;
 			}
 
+			this->gameData.gameCompleted = true;
+			if (this->difficulty == 1)
+			{
+				this->gameData.normalVictory = true;
+			}
+			if (this->difficulty == 2)
+			{
+				this->gameData.hellVictory = true;
+			}
+			this->updateShopUnlocks();
+			updateGameData(this->gameData);
+
 
 			this->enemyKillCounter = enemyKillCounter + 200;
 			checkerFive = false;
@@ -906,7 +918,7 @@ void Game::updateDifficulty()
 			{
 				std::cout << "ERROR::BRAVERY::FAILED_TO_LOAD" << "\n";
 			}
-			this->endMusic.setVolume(this->musicVolume * 20);
+			this->endMusic.setVolume(this->clampVolume(this->musicVolume * 20.f));
 			this->endMusic.play();
 
 			checkerSix = false;
@@ -916,11 +928,6 @@ void Game::updateDifficulty()
 		if(elapsedTime >= timeStamp + 22.f && checkerFive == false && checkerSeven)
 		{
 			this->triggerFadeEffect();
-
-			if(difficulty == 1)
-			{
-				this->gameData.normalVictory = true;
-			}
 
 			checkerSeven = false;
 		}

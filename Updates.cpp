@@ -93,7 +93,7 @@ void Game::updateInput()
 	}
 	
 	// DEBUG INPUTS
-
+	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		this->player->upgradeDamage();
@@ -113,6 +113,7 @@ void Game::updateInput()
 	{
 		elapsedTime = elapsedTime + 1.f;
 	}
+	*/
 }
 
 void Game::updateBackground()
@@ -165,13 +166,6 @@ void Game::updateGUI()
 		if (gameData.highScore < points)
 		{
 			gameData.highScore = points;
-			updateGameData(gameData);
-		}
-		if (gameData.highScore >= 500000)
-		{
-			gameData.blackship = "ACQUIRED";
-			gameData.blackbullet = "ACQUIRED";
-			gameData.whitefire = "ACQUIRED";
 			updateGameData(gameData);
 		}
 		std::stringstream ss4;
@@ -274,23 +268,22 @@ void Game::updateTimer()
 
 void Game::updateBullets()
 {
-	unsigned counter = 0;
-	for (auto* bullet : this->bullets)
+	for (auto it = this->bullets.begin(); it != this->bullets.end();)
 	{
+		Bullet* bullet = *it;
 		bullet->update();
 
 		// Bullet culling (top and bottom)
 		if (bullet->getBounds().top + bullet->getBounds().height < 0.f ||
 			bullet->getBounds().top > this->window->getSize().y)
 		{
-			// Delete bullets
-			delete this->bullets.at(counter);
-			this->bullets.erase(this->bullets.begin() + counter);
-			--counter;
+			delete bullet;
+			it = this->bullets.erase(it);
 		}
-
-
-		++counter;
+		else
+		{
+			++it;
+		}
 	}
 }
 
@@ -960,36 +953,36 @@ void Game::updateHealthBar(int hp)
 
 void Game::updateSoundFXVolume() 
 {
-	this->laserSound.setVolume(this->soundfxVolume * 3.0f); // 12.5
-	this->levelup.setVolume(this->soundfxVolume * 25);
-	this->shield.setVolume(this->soundfxVolume * 50);
-	this->bossLaser.setVolume(this->soundfxVolume * 3);
-	this->explosionSound.setVolume(this->soundfxVolume * 15);
-	this->criticalHit.setVolume(this->soundfxVolume * 15);
-	this->clangHit.setVolume(this->soundfxVolume * 15);
-	this->healSound.setVolume(this->soundfxVolume * 5);
-	this->powerUpSound.setVolume(this->soundfxVolume * 5);
-	this->swooshSound.setVolume(this->soundfxVolume * 50);
-	this->pauseSound.setVolume(this->soundfxVolume * 10); // 50
-	this->alienHit.setVolume(this->soundfxVolume * 6); // 30
-	this->playerHit.setVolume(this->soundfxVolume * 7); // 35
-	this->menuSound.setVolume(this->soundfxVolume * 10); // 50
-	this->buySound.setVolume(this->soundfxVolume * 50);
-	this->noMoneySound.setVolume(this->soundfxVolume * 25);
-	this->equipSound.setVolume(this->soundfxVolume * 15);
-	this->deathbeamSound.setVolume(this->soundfxVolume * 15);
-	this->difficultySetSound.setVolume(this->soundfxVolume * 15);
-	this->boss->setVolumeSFX(soundfxVolume*15);
+	this->laserSound.setVolume(this->clampVolume(this->soundfxVolume * 3.0f));
+	this->levelup.setVolume(this->clampVolume(this->soundfxVolume * 25.f));
+	this->shield.setVolume(this->clampVolume(this->soundfxVolume * 50.f));
+	this->bossLaser.setVolume(this->clampVolume(this->soundfxVolume * 3.f));
+	this->explosionSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->criticalHit.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->clangHit.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->healSound.setVolume(this->clampVolume(this->soundfxVolume * 5.f));
+	this->powerUpSound.setVolume(this->clampVolume(this->soundfxVolume * 5.f));
+	this->swooshSound.setVolume(this->clampVolume(this->soundfxVolume * 50.f));
+	this->pauseSound.setVolume(this->clampVolume(this->soundfxVolume * 10.f));
+	this->alienHit.setVolume(this->clampVolume(this->soundfxVolume * 6.f));
+	this->playerHit.setVolume(this->clampVolume(this->soundfxVolume * 7.f));
+	this->menuSound.setVolume(this->clampVolume(this->soundfxVolume * 10.f));
+	this->buySound.setVolume(this->clampVolume(this->soundfxVolume * 50.f));
+	this->noMoneySound.setVolume(this->clampVolume(this->soundfxVolume * 25.f));
+	this->equipSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->deathbeamSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->difficultySetSound.setVolume(this->clampVolume(this->soundfxVolume * 15.f));
+	this->boss->setVolumeSFX(this->clampVolume(this->soundfxVolume * 15.f));
 	float soundfxvolumePercent = static_cast<float>(this->soundfxVolume / static_cast<float>(10));
 	this->soundfxvolumeIndicator.setSize(sf::Vector2f(300.f * soundfxvolumePercent, this->soundfxvolumeIndicator.getSize().y));
 }
 
 void Game::updateMusicVolume()
 {
-	this->stageMusic.setVolume(this->musicVolume * 6); // 30
-	this->gameOverMusic.setVolume(this->musicVolume * 6); // 30
-	this->victoryTune.setVolume(this->musicVolume * 6); // 30
-	this->menuMusic.setVolume(this->musicVolume * 6); // 30
+	this->stageMusic.setVolume(this->clampVolume(this->musicVolume * 6.f));
+	this->gameOverMusic.setVolume(this->clampVolume(this->musicVolume * 6.f));
+	this->victoryTune.setVolume(this->clampVolume(this->musicVolume * 6.f));
+	this->menuMusic.setVolume(this->clampVolume(this->musicVolume * 6.f));
 	float musicvolumePercent = static_cast<float>(this->musicVolume / static_cast<float>(10));
 	this->musicvolumeIndicator.setSize(sf::Vector2f(300.f * musicvolumePercent, this->musicvolumeIndicator.getSize().y));
 }
@@ -1081,13 +1074,6 @@ void Game::updateEndScreen()
 		if (gameData.highScore < points)
 		{
 			gameData.highScore = points;
-			updateGameData(gameData);
-		}
-		if (gameData.highScore >= 500000)
-		{
-			gameData.blackship = "ACQUIRED";
-			gameData.blackbullet = "ACQUIRED";
-			gameData.whitefire = "ACQUIRED";
 			updateGameData(gameData);
 		}
 		this->reset();
