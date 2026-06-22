@@ -290,7 +290,7 @@ void Game::initializeSounds()
 
 	this->criticalHit.setBuffer(this->criticalBuffer);
 
-	if (!this->explosionBuffer.loadFromFile("Sounds/ExplosionEnd.mp3"))
+	if (!this->explosionBuffer.loadFromFile("Sounds/large-explosion.wav"))
 	{
 		std::cout << "SOUND::EXPLOSION::FAILED_TO_LOAD";
 	}
@@ -412,19 +412,19 @@ void Game::initializeMusicVolume()
 void Game::initializeGUI()
 {
 	// Load Fonts
-	if (!this->font.loadFromFile("Fonts/Pixellettersfull.ttf"))
+	if (!this->font.loadFromFile("Fonts/Pixelbasel.ttf"))
 	{
-		std::cout << "FONT::PIXELLETTERSFULL::FAILED_TO_LOAD" << "\n";
+		std::cout << "FONT::PIXELBASEL::FAILED_TO_LOAD" << "\n";
 	}
 
-	if (!this->titleFont.loadFromFile("Fonts/Debrosee.ttf"))
+	if (!this->titleFont.loadFromFile("Fonts/Mephisto.ttf"))
 	{
-		std::cout << "FONT::DEBROSEE::FAILED_TO_LOAD" << "\n";
+		std::cout << "FONT::MEPHISTO::FAILED_TO_LOAD" << "\n";
 	}
 
 	//Initialize point text
 	this->pointText.setFont(this->font);
-	this->pointText.setCharacterSize(48);
+	this->pointText.setCharacterSize(47);
 	this->pointText.setStyle(sf::Text::Bold);
 	this->pointText.setFillColor(sf::Color::Black);
 	this->pointText.setOutlineColor(sf::Color::White);
@@ -434,7 +434,7 @@ void Game::initializeGUI()
 
 	//Initialize point text
 	this->coinText.setFont(this->font);
-	this->coinText.setCharacterSize(36);
+	this->coinText.setCharacterSize(35);
 	this->coinText.setStyle(sf::Text::Bold);
 	this->coinText.setFillColor(sf::Color::Black);
 	this->coinText.setOutlineColor(sf::Color::White);
@@ -444,7 +444,7 @@ void Game::initializeGUI()
 
 	// Initialize kill counter text
 	this->killCounterText.setFont(this->font);
-	this->killCounterText.setCharacterSize(36);
+	this->killCounterText.setCharacterSize(35);
 	this->killCounterText.setStyle(sf::Text::Bold);
 	this->killCounterText.setFillColor(sf::Color::Black);
 	this->killCounterText.setOutlineColor(sf::Color::White);
@@ -454,7 +454,7 @@ void Game::initializeGUI()
 
 	// Initialize kill counter text
 	this->shieldText.setFont(this->font);
-	this->shieldText.setCharacterSize(72);
+	this->shieldText.setCharacterSize(71);
 	this->shieldText.setStyle(sf::Text::Bold);
 	this->shieldText.setFillColor(sf::Color::Black);
 	this->shieldText.setOutlineColor(sf::Color::White);
@@ -523,7 +523,7 @@ void Game::initializeGUI()
 
 	// Initialize timer
 	this->timerText.setFont(this->font);
-	this->timerText.setCharacterSize(36);
+	this->timerText.setCharacterSize(35);
 	this->timerText.setStyle(sf::Text::Bold);
 	this->timerText.setFillColor(sf::Color::Black);
 	this->timerText.setOutlineColor(sf::Color::White);
@@ -708,7 +708,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Play menu item
 	this->playText.setFont(this->font);
-	this->playText.setCharacterSize(48);
+	this->playText.setCharacterSize(47);
 	this->playText.setFillColor(sf::Color::White);
 	this->playText.setString("Play");
 	this->playText.setPosition(
@@ -718,7 +718,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Shop menu item
 	this->shopText.setFont(this->font);
-	this->shopText.setCharacterSize(48);
+	this->shopText.setCharacterSize(47);
 	this->shopText.setFillColor(sf::Color::White);
 	this->shopText.setString("Shop");
 	this->shopText.setPosition(
@@ -728,7 +728,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Settings menu item
 	this->settingsText.setFont(this->font);
-	this->settingsText.setCharacterSize(48);
+	this->settingsText.setCharacterSize(47);
 	this->settingsText.setFillColor(sf::Color::White);
 	this->settingsText.setString("Settings");
 	this->settingsText.setPosition(
@@ -738,7 +738,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Settings menu item
 	this->tutorialText.setFont(this->font);
-	this->tutorialText.setCharacterSize(48);
+	this->tutorialText.setCharacterSize(47);
 	this->tutorialText.setFillColor(sf::Color::White);
 	this->tutorialText.setString("Tutorial");
 	this->tutorialText.setPosition(
@@ -747,7 +747,7 @@ void Game::initializeStartMenu()
 	);
 
 	this->creditsText.setFont(this->font);
-	this->creditsText.setCharacterSize(48);
+	this->creditsText.setCharacterSize(47);
 	this->creditsText.setFillColor(sf::Color::White);
 	this->creditsText.setString("Credits");
 	this->creditsText.setPosition(
@@ -757,7 +757,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Reset menu item
 	this->resetText.setFont(this->font);
-	this->resetText.setCharacterSize(48);
+	this->resetText.setCharacterSize(47);
 	this->resetText.setFillColor(sf::Color::White);
 	this->resetText.setString("Set Difficulty");
 	this->resetText.setPosition(
@@ -767,7 +767,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Quit menu item
 	this->quitText.setFont(this->font);
-	this->quitText.setCharacterSize(48);
+	this->quitText.setCharacterSize(47);
 	this->quitText.setFillColor(sf::Color::White);
 	this->quitText.setString("Quit");
 	this->quitText.setPosition(
@@ -777,7 +777,7 @@ void Game::initializeStartMenu()
 
 	// Initialize Quit menu item
 	this->menuHighScore.setFont(this->font);
-	this->menuHighScore.setCharacterSize(48);
+	this->menuHighScore.setCharacterSize(47);
 	this->menuHighScore.setFillColor(sf::Color::White);
 	this->menuHighScore.setString("ERROR");
 	this->menuHighScore.setPosition(10.f, 675.f);
@@ -788,7 +788,7 @@ void Game::initializeStartMenu()
 void Game::initializeQuitConfirmationMenu()
 {
 	this->areYouSureQuestion.setFont(this->font);
-	this->areYouSureQuestion.setCharacterSize(48);
+	this->areYouSureQuestion.setCharacterSize(47);
 	this->areYouSureQuestion.setFillColor(sf::Color::White);
 	this->areYouSureQuestion.setString("Are you sure you want to quit?");
 	this->areYouSureQuestion.setPosition(
@@ -797,7 +797,7 @@ void Game::initializeQuitConfirmationMenu()
 	);
 
 	this->yesCloseApplication.setFont(this->font);
-	this->yesCloseApplication.setCharacterSize(48);
+	this->yesCloseApplication.setCharacterSize(47);
 	this->yesCloseApplication.setFillColor(sf::Color::White);
 	this->yesCloseApplication.setString("Yes");
 	this->yesCloseApplication.setPosition(
@@ -806,7 +806,7 @@ void Game::initializeQuitConfirmationMenu()
 	);
 
 	this->noKeepPlaying.setFont(this->font);
-	this->noKeepPlaying.setCharacterSize(48);
+	this->noKeepPlaying.setCharacterSize(47);
 	this->noKeepPlaying.setFillColor(sf::Color::White);
 	this->noKeepPlaying.setString("No");
 	this->noKeepPlaying.setPosition(
@@ -1063,7 +1063,7 @@ void Game::initializeShopMenu()
 	);
 
 	this->returnfromshopText.setFont(this->font);
-	this->returnfromshopText.setCharacterSize(48);
+	this->returnfromshopText.setCharacterSize(47);
 	this->returnfromshopText.setFillColor(sf::Color::White);
 	this->returnfromshopText.setString("Return");
 	this->returnfromshopText.setPosition(
@@ -1075,12 +1075,12 @@ void Game::initializeShopMenu()
 	ss2 << "Money: " << this->gameData.coins << "$";
 	this->coinAmount.setString(ss2.str());
 	this->coinAmount.setFont(this->font);
-	this->coinAmount.setCharacterSize(48);
+	this->coinAmount.setCharacterSize(47);
 	this->coinAmount.setFillColor(sf::Color::White);
 	this->coinAmount.setPosition(10.f, 725.f);
 
 	this->objectPrice.setFont(this->font);
-	this->objectPrice.setCharacterSize(48);
+	this->objectPrice.setCharacterSize(47);
 	this->objectPrice.setFillColor(sf::Color::White);
 	this->objectPrice.setString("");
 	this->objectPrice.setPosition(
@@ -1101,7 +1101,7 @@ void Game::initializePauseMenu()
 	);
 	// Initialize Resume menu item
 	this->resumeText.setFont(this->font);
-	this->resumeText.setCharacterSize(48);
+	this->resumeText.setCharacterSize(47);
 	this->resumeText.setFillColor(sf::Color::White);
 	this->resumeText.setString("Resume");
 	this->resumeText.setPosition(
@@ -1110,7 +1110,7 @@ void Game::initializePauseMenu()
 	);
 	// Initialize Pause Settings menu item
 	this->pausesettingsText.setFont(this->font);
-	this->pausesettingsText.setCharacterSize(48);
+	this->pausesettingsText.setCharacterSize(47);
 	this->pausesettingsText.setFillColor(sf::Color::White);
 	this->pausesettingsText.setString("Settings");
 	this->pausesettingsText.setPosition(
@@ -1119,7 +1119,7 @@ void Game::initializePauseMenu()
 	);
 	// Initialize Back to Main Menu menu item
 	this->mainmenuText.setFont(this->font);
-	this->mainmenuText.setCharacterSize(48);
+	this->mainmenuText.setCharacterSize(47);
 	this->mainmenuText.setFillColor(sf::Color::White);
 	this->mainmenuText.setString("Back to Main Menu");
 	this->mainmenuText.setPosition(
@@ -1142,7 +1142,7 @@ void Game::initializeTutorialMenu()
 		this->window->getSize().y / 2.f - this->tutorialTitle.getGlobalBounds().height / 2.f - 300.f
 	);
 	this->keybindingsExplanation.setFont(this->font);
-	this->keybindingsExplanation.setCharacterSize(34);
+	this->keybindingsExplanation.setCharacterSize(33);
 	this->keybindingsExplanation.setFillColor(sf::Color::White);
 	this->keybindingsExplanation.setString("Left/Right --> Move between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal for 1 hp, spawns every minute \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Money\n");
 	this->keybindingsExplanation.setPosition(
@@ -1161,7 +1161,7 @@ void Game::initializeGameOverMenu()
 
 	// Initialize Back to Main Menu menu item
 	this->mainmenuText.setFont(this->font);
-	this->mainmenuText.setCharacterSize(48);
+	this->mainmenuText.setCharacterSize(47);
 	this->mainmenuText.setFillColor(sf::Color::White);
 	this->mainmenuText.setString("Back to Main Menu");
 	this->mainmenuText.setPosition(
@@ -1169,7 +1169,7 @@ void Game::initializeGameOverMenu()
 		this->window->getSize().y / 2.f - this->mainmenuText.getGlobalBounds().height / 2.f
 	);
 	this->scoreAchieved.setFont(this->font);
-	this->scoreAchieved.setCharacterSize(48);
+	this->scoreAchieved.setCharacterSize(47);
 	this->scoreAchieved.setFillColor(sf::Color::White);
 	this->scoreAchieved.setString("ERROR");
 	this->scoreAchieved.setPosition(
@@ -1177,7 +1177,7 @@ void Game::initializeGameOverMenu()
 		this->window->getSize().y / 2.f - this->mainmenuText.getGlobalBounds().height / 2.f + 200.f
 	);
 	this->lastHighScore.setFont(this->font);
-	this->lastHighScore.setCharacterSize(48);
+	this->lastHighScore.setCharacterSize(47);
 	this->lastHighScore.setFillColor(sf::Color::White);
 	this->lastHighScore.setString("ERROR");
 	this->lastHighScore.setPosition(
@@ -1191,7 +1191,7 @@ void Game::initializeEndScreen()
 
     // Set up congratulatory text
     this->congratText.setFont(this->font);
-    this->congratText.setCharacterSize(100);
+    this->congratText.setCharacterSize(99);
     this->congratText.setFillColor(sf::Color::White);
 	this->congratText.setOutlineColor(sf::Color::Yellow);
 	this->congratText.setOutlineThickness(0.5);
@@ -1221,7 +1221,7 @@ void Game::initializeDifficultyMenu()
 
 	// Easy difficulty text
 	this->easyText.setFont(this->font);
-	this->easyText.setCharacterSize(60);
+	this->easyText.setCharacterSize(59);
 	this->easyText.setFillColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
 	this->easyText.setOutlineColor(sf::Color(0, 255, 0, 128));  // Semi-transparent green
 	this->easyText.setOutlineThickness(1.f);
@@ -1233,7 +1233,7 @@ void Game::initializeDifficultyMenu()
 
 	// Normal difficulty text
 	this->normalText.setFont(this->font);
-	this->normalText.setCharacterSize(60);
+	this->normalText.setCharacterSize(59);
 	this->normalText.setFillColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
 	this->normalText.setOutlineColor(sf::Color(255, 255, 0, 128)); // Semi-transparent yellow
 	this->normalText.setOutlineThickness(1.f);
@@ -1245,7 +1245,7 @@ void Game::initializeDifficultyMenu()
 
 	// Hard difficulty text
 	this->hardText.setFont(this->font);
-	this->hardText.setCharacterSize(60);
+	this->hardText.setCharacterSize(59);
 	this->hardText.setFillColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
 	this->hardText.setOutlineColor(sf::Color(255, 0, 0, 128));  // Semi-transparent red
 	this->hardText.setOutlineThickness(1.f);
@@ -1257,7 +1257,7 @@ void Game::initializeDifficultyMenu()
 
 	// Return text
 	this->returnText.setFont(this->font);
-	this->returnText.setCharacterSize(50);
+	this->returnText.setCharacterSize(49);
 	this->returnText.setFillColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
 	this->returnText.setOutlineColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
 	this->returnText.setOutlineThickness(1.f);
@@ -1268,7 +1268,7 @@ void Game::initializeDifficultyMenu()
 	);
 
 	this->currentText.setFont(this->font);
-	this->currentText.setCharacterSize(50);
+	this->currentText.setCharacterSize(49);
 	this->currentText.setFillColor(sf::Color::White);
 	this->currentText.setString("Difficulty: ");
 	this->currentText.setPosition(0, 730);
@@ -1289,7 +1289,7 @@ void Game::initializeSettingsMenu()
 	);
 	// Initialize Music Volume menu item
 	this->musicvolumeText.setFont(this->font);
-	this->musicvolumeText.setCharacterSize(48);
+	this->musicvolumeText.setCharacterSize(47);
 	this->musicvolumeText.setFillColor(sf::Color::White);
 	this->musicvolumeText.setString("Music Volume");
 	this->musicvolumeText.setPosition(
@@ -1299,7 +1299,7 @@ void Game::initializeSettingsMenu()
 
 	// Initialize Sound FX menu item
 	this->soundfxText.setFont(this->font);
-	this->soundfxText.setCharacterSize(48);
+	this->soundfxText.setCharacterSize(47);
 	this->soundfxText.setFillColor(sf::Color::White);
 	this->soundfxText.setString("Sound FX");
 	this->soundfxText.setPosition(
@@ -1348,7 +1348,7 @@ void Game::initializeSettingsMenu()
 
 	// Initialize Back to Main Menu menu item
 	this->backText.setFont(this->font);
-	this->backText.setCharacterSize(48);
+	this->backText.setCharacterSize(47);
 	this->backText.setFillColor(sf::Color::White);
 	this->backText.setString("Back");
 	this->backText.setPosition(
@@ -1366,10 +1366,10 @@ void Game::initializeCreditsMenu()
 	);
 
 	this->creditLineText.setFont(this->font);
-	this->creditLineText.setCharacterSize(28);
+	this->creditLineText.setCharacterSize(27);
 
 	this->creditsInstructionsText.setFont(this->font);
-	this->creditsInstructionsText.setCharacterSize(20);
+	this->creditsInstructionsText.setCharacterSize(19);
 	this->creditsInstructionsText.setFillColor(sf::Color::White);
 	this->creditsInstructionsText.setString("UP/DOWN: Select    ENTER: Open link    ESC: Return");
 	this->creditsInstructionsText.setPosition(
@@ -1378,14 +1378,14 @@ void Game::initializeCreditsMenu()
 	);
 
 	this->creditsStatusText.setFont(this->font);
-	this->creditsStatusText.setCharacterSize(18);
+	this->creditsStatusText.setCharacterSize(17);
 	this->creditsStatusText.setFillColor(sf::Color::Yellow);
 	this->creditsStatusText.setString("");
 	this->creditsStatusText.setPosition(25.f, 720.f);
 
 	// This shared return label remains on the tutorial screen.
 	this->returnfromcreditsText.setFont(this->font);
-	this->returnfromcreditsText.setCharacterSize(48);
+	this->returnfromcreditsText.setCharacterSize(47);
 	this->returnfromcreditsText.setFillColor(sf::Color::Yellow);
 	this->returnfromcreditsText.setString("Return");
 	this->returnfromcreditsText.setPosition(
@@ -1409,8 +1409,8 @@ void Game::initializeCreditsMenu()
 		{ "Stage 1 Enemies - Spaceship Shooter Environment by Ansimuz", "https://ansimuz.itch.io/spaceship-shooter-environment" },
 
 		{ "--- FONTS ---", "" },
-		{ "Debrosee", "https://www.dafont.com/debrosee.font" },
-		{ "Pixellettersfull", "https://www.wfonts.com/font/pixellettersfull" },
+		{ "Mephisto - Header Font", "https://fontesk.com/mephisto-font/" },
+		{ "Pixelbasel - Interface Font", "https://fontesk.com/pixelbasel-font/" },
 
 		{ "--- MUSIC ---", "" },
 		{ "Space Shooter Music - MUSIC BY OBLIDIVM http://oblidivmmusic.blogspot.com.es/", "https://opengameart.org/content/space-shooter-music" },
@@ -1420,12 +1420,15 @@ void Game::initializeCreditsMenu()
 		{ "Menu Button - Apenguin73", "https://freesound.org/people/Apenguin73/sounds/428132/" },
 		{ "Enemy Hit - LeMudCrab", "https://freesound.org/people/LeMudCrab/sounds/163456/" },
 		{ "Player Hit - qubodup", "https://freesound.org/people/qubodup/sounds/182429/" },
+		{ "Player Laser - Daleonfire", "https://freesound.org/people/Daleonfire/sounds/505235/" },
 		{ "Pause - Wagna", "https://freesound.org/people/Wagna/sounds/326418/" },
 		{ "Heal - colorsCrimsonTears", "https://freesound.org/people/colorsCrimsonTears/sounds/562292/" },
 		{ "Power Up - MATRIXXX_", "https://freesound.org/people/MATRIXXX_/sounds/523654/" },
 		{ "Lane Switch - lesaucisson", "https://freesound.org/people/lesaucisson/sounds/585256/" },
 		{ "Boss Hit - Anthousai", "https://freesound.org/people/Anthousai/sounds/405665/" },
+		{ "Boss Defeat Explosion - V-ktor", "https://freesound.org/people/V-ktor/sounds/482993/" },
 		{ "Heavy Player Hit - qubodup", "https://freesound.org/people/qubodup/sounds/442769/" },
+		{ "Laser Beam - magnuswaker", "https://freesound.org/people/magnuswaker/sounds/588242/" },
 		{ "Boss Laser - Pixabay", "https://pixabay.com/sound-effects/laser-zap-90575/" },
 		{ "Shield - Joao_Janz", "https://freesound.org/people/Joao_Janz/sounds/478342/" },
 		{ "Kill Counter Max - GameAudio", "https://freesound.org/people/GameAudio/sounds/220173/" },

@@ -576,7 +576,7 @@ void Game::updateEnemies()
 			delete enemy;
 			it = this->enemies.erase(it);
 		}
-		else if (enemy->getBounds().intersects(this->player->getBounds()) && enemy->getType() != 11)
+		else if (enemy->getBounds().intersects(this->player->getHitbox()) && enemy->getType() != 11)
 		{
 
 			this->player->loseHp(enemy->getDamage());
@@ -592,7 +592,7 @@ void Game::updateEnemies()
 			this->playerHit.play();
 
 		}
-		else if (enemy->getBounds().intersects(this->player->getBounds()) && enemy->getType() == 11 && !this->player->isInvincible())
+		else if (enemy->getBounds().intersects(this->player->getHitbox()) && enemy->getType() == 11 && !this->player->isInvincible())
 		{
 			// Handle collision for enemy type 11 without deleting the enemy
 			this->player->loseHp(enemy->getDamage());
@@ -825,7 +825,7 @@ void Game::updateCombat()
 
 				--j; // Adjust index after erasing
 			}
-			else if (this->bullets[j]->bulletChecker() && this->bullets[j]->getBounds().intersects(this->player->getBounds()))
+			else if (this->bullets[j]->bulletChecker() && this->bullets[j]->getBounds().intersects(this->player->getHitbox()))
 			{
 				// Enemy's bullet hits the player
 				if (!this->player->isInvincible()) {
@@ -835,7 +835,7 @@ void Game::updateCombat()
 			}
 		}
 
-		if (this->boss->getBounds().intersects(this->player->getBounds()) && this->boss->isAlive())
+		if (this->boss->getBounds().intersects(this->player->getHitbox()) && this->boss->isAlive())
 		{
 			// Boss hits the player
 			if (!this->player->isInvincible()) {

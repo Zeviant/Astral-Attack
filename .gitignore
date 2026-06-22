@@ -28,6 +28,8 @@ x86/
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/
+!External/SFML/bin/
+!External/SFML/bin/*.dll
 [Oo]bj/
 [Oo]ut/
 [Ll]og/

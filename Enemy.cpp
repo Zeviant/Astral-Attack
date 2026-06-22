@@ -280,7 +280,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->speed = 6.5f;
 
 		this->bomberFire.setTexture(this->bomberFireTexture);
-		this->bomberfireFrame = sf::IntRect(0, 0, 64, 64); // Set the initial frame (width = 64, height = 64)
+		this->bomberfireFrame = sf::IntRect(0, 0, 64, 64);
 		this->bomberFire.setTextureRect(this->bomberfireFrame);
 		this->bomberFire.setScale(2.75f, 2.75f);
 		this->bomberFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY1"]->getSize().x / 2) * 2.75f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY1"]->getSize().y) * 2.75f + 45.f);
@@ -302,7 +302,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->speed = 7.5f;
 
 		this->scoutFire.setTexture(this->scoutFireTexture);
-		this->scoutFireFrame = sf::IntRect(0, 0, 64, 64); // Set the initial frame (width = 64, height = 64)
+		this->scoutFireFrame = sf::IntRect(0, 0, 64, 64);
 		this->scoutFire.setTextureRect(this->scoutFireFrame);
 		this->scoutFire.setScale(2.75f, 2.75f);
 		this->scoutFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY2"]->getSize().x / 2) * 2.75f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY2"]->getSize().y) * 2.75f - 50.f);
@@ -318,13 +318,13 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->enemyOne.setPosition(pos_x, pos_y);
 
 		this->type = type;
-		this->hp = 13.f;
+		this->hp = 11.f;
 		this->damage = 1;
 		this->points = 1000;
 		this->speed = 4.0f;
 
 		this->frigateFire.setTexture(this->frigateFireTexture);
-		this->frigateFireFrame = sf::IntRect(0, 0, 64, 64); // Set the initial frame (width = 64, height = 64)
+		this->frigateFireFrame = sf::IntRect(0, 0, 64, 64);
 		this->frigateFire.setTextureRect(this->frigateFireFrame);
 		this->frigateFire.setScale(2.75f, 2.75f);
 		this->frigateFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY3"]->getSize().x / 2) * 2.75f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY3"]->getSize().y) * 2.75f - 50.f);
@@ -346,7 +346,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->speed = 13.5f;
 
 		this->fighterFire.setTexture(this->fighterFireTexture);
-		this->fighterFrame = sf::IntRect(0, 0, 64, 64); // Set the initial frame (width = 64, height = 64)
+		this->fighterFrame = sf::IntRect(0, 0, 64, 64);
 		this->fighterFire.setTextureRect(this->fighterFrame);
 		this->fighterFire.setScale(2.75f, 2.75f);
 		this->fighterFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY4"]->getSize().x / 2) * 2.75f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY4"]->getSize().y) * 2.75f - 50.f);
@@ -368,7 +368,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->speed = 3.0f;
 
 		this->supportFire.setTexture(this->supportFireTexture);
-		this->supportFrame = sf::IntRect(0, 0, 64, 64); // Set the initial frame (width = 64, height = 64)
+		this->supportFrame = sf::IntRect(0, 0, 64, 64);
 		this->supportFire.setTextureRect(this->supportFrame);
 		this->supportFire.setScale(2.5f, 2.5f);
 		this->supportFire.rotate(90);
@@ -386,13 +386,13 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->enemyOne.setPosition(pos_x, pos_y);
 
 		this->type = type;
-		this->hp = 4.f;
+		this->hp = 3.f;
 		this->damage = 1;
 		this->points = 500;
 		this->speed = 3.5f;
 
 		this->torpedoFire.setTexture(this->torpedoFireTexture);
-		this->torpedoFrame = sf::IntRect(0, 0, 64, 64); // Set the initial frame (width = 64, height = 64)
+		this->torpedoFrame = sf::IntRect(0, 0, 64, 64);
 		this->torpedoFire.setTextureRect(this->torpedoFrame);
 		this->torpedoFire.setScale(2.75f, 2.75f);
 		this->torpedoFire.rotate(270);
@@ -412,9 +412,9 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->hp = 100.f;
 		this->damage = 1;
 		this->points = 0;
-		this->speed = 8.f;
+		this->speed = 7.f;
 
-		this->deathBeamFrame = sf::IntRect(0, 0, 18, 950); // Set the initial frame (width = 64, height = 64)
+		this->deathBeamFrame = sf::IntRect(0, 0, 18, 950);
 		this->enemyOne.setTextureRect(this->deathBeamFrame);
 		this->enemyOne.setScale(2.75f, 2.75f);
 		this->enemyOne.setPosition(this->enemyOne.getPosition().x - (deathBeamTexture.getSize().x / 2) * 2.75f, this->enemyOne.getPosition().y - (deathBeamTexture.getSize().y) * 2.75f + 45.f);
@@ -496,7 +496,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->enemyOne.setPosition(pos_x, pos_y);
 
 		this->type = type;
-		this->hp = 20.f;
+		this->hp = 16.f;
 		this->damage = 1;
 		this->points = 4000;
 		this->speed = 6.5f;
@@ -518,7 +518,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->enemyOne.setPosition(pos_x, pos_y);
 
 		this->type = type;
-		this->hp = 7.f;
+		this->hp = 4.f;
 		this->damage = 1;
 		this->points = 1000;
 		this->speed = 4.5f;
@@ -541,7 +541,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->enemyOne.setPosition(pos_x, pos_y);
 
 		this->type = type;
-		this->hp = 8.f;
+		this->hp = 4.f;
 		this->damage = 1;
 		this->points = 1000;
 		this->speed = 4.f;
@@ -567,7 +567,7 @@ Enemy::Enemy(float pos_x, float pos_y, int type)
 		this->hp = 100.f;
 		this->damage = 1;
 		this->points = 0;
-		this->speed = 6.5f;
+		this->speed = 6.0f;
 
 		this->deathBeam2Frame = sf::IntRect(0, 0, 18, 950); // Set the initial frame (width = 64, height = 64)
 		this->enemyOne.setTextureRect(this->deathBeam2Frame);

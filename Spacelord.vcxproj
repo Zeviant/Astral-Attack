@@ -84,8 +84,15 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)External\SFML\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-system-d.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-d.lib;sfml-window-d.lib;sfml-audio-d.lib;sfml-system-d.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(SolutionDir)External\SFML\bin\sfml-graphics-d-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\sfml-window-d-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\sfml-audio-d-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\sfml-system-d-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\openal32.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -104,8 +111,15 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)External\SFML\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-system.lib;Shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>copy /Y "$(SolutionDir)External\SFML\bin\sfml-graphics-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\sfml-window-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\sfml-audio-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\sfml-system-2.dll" "$(OutDir)"
+copy /Y "$(SolutionDir)External\SFML\bin\openal32.dll" "$(OutDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>

@@ -4,12 +4,49 @@
 #include <fstream>
 #include <filesystem>
 #include <cstdlib>
+#include <charconv>
+#include <string_view>
+#include <system_error>
 
 namespace
 {
     namespace fs = std::filesystem;
 
     const fs::path legacySavePath = fs::path("Data") / "gamedata.txt";
+
+    template <typename Number>
+    bool parseNumber(std::string_view text, Number& value)
+    {
+        Number parsedValue{};
+        const char* const begin = text.data();
+        const char* const end = begin + text.size();
+        const auto result = std::from_chars(begin, end, parsedValue);
+
+        if (result.ec != std::errc{} || result.ptr != end)
+        {
+            return false;
+        }
+
+        value = parsedValue;
+        return true;
+    }
+
+    bool parseBoolean(std::string_view text, bool& value)
+    {
+        unsigned int parsedValue = 0;
+        if (!parseNumber(text, parsedValue) || parsedValue > 1)
+        {
+            return false;
+        }
+
+        value = parsedValue != 0;
+        return true;
+    }
+
+    void reportInvalidValue(const std::string& line)
+    {
+        std::cerr << "Ignoring invalid save value: " << line << '\n';
+    }
 
     fs::path getSavePath()
     {
@@ -81,6 +118,7 @@ GameData readFromFile() {
     GameData data;
     const std::filesystem::path savePath = getSavePath();
     bool migrateLegacySave = false;
+    bool repairSave = false;
     std::ifstream inFile(savePath);
 
     if (!inFile.is_open() && savePath != legacySavePath) {
@@ -95,29 +133,55 @@ GameData readFromFile() {
         std::string line;
         while (getline(inFile, line)) {
             if (line.find("coins = ") == 0) {
-                data.coins = std::stoi(line.substr(8));
+                int value = 0;
+                if (parseNumber(std::string_view(line).substr(8), value) && value >= 0) {
+                    data.coins = value;
+                }
+                else {
+                    reportInvalidValue(line);
+                    repairSave = true;
+                }
             }
             else if (line.find("high-score = ") == 0) {
-            data.highScore = std::stoul(line.substr(13));
+                if (!parseNumber(std::string_view(line).substr(13), data.highScore)) {
+                    reportInvalidValue(line);
+                    repairSave = true;
+                }
         }
 
         else if (line.find("normalVictory = ") == 0)
         {
-            data.normalVictory = std::stoul(line.substr(16));
+            if (!parseBoolean(std::string_view(line).substr(16), data.normalVictory)) {
+                reportInvalidValue(line);
+                repairSave = true;
+            }
         }
 
         else if (line.find("gameCompleted = ") == 0)
         {
-            data.gameCompleted = std::stoul(line.substr(16));
+            if (!parseBoolean(std::string_view(line).substr(16), data.gameCompleted)) {
+                reportInvalidValue(line);
+                repairSave = true;
+            }
         }
 
         else if (line.find("hellVictory = ") == 0)
         {
-            data.hellVictory = std::stoul(line.substr(14));
+            if (!parseBoolean(std::string_view(line).substr(14), data.hellVictory)) {
+                reportInvalidValue(line);
+                repairSave = true;
+            }
         }
 
         else if (line.find("equipedbullet = ") == 0) {
-            data.equipedbullet = std::stoi(line.substr(16));
+            int value = 0;
+            if (parseNumber(std::string_view(line).substr(16), value) && value >= 0 && value <= 6) {
+                data.equipedbullet = value;
+            }
+            else {
+                reportInvalidValue(line);
+                repairSave = true;
+            }
         }
         else if (line.find("redbullet = ") == 0) {
             data.redbullet = line.substr(12);
@@ -141,7 +205,14 @@ GameData readFromFile() {
                 data.blackbullet = line.substr(14);
             }
         else if (line.find("equipedship = ") == 0) {
-                data.equipedship = std::stoi(line.substr(14));
+                int value = 0;
+                if (parseNumber(std::string_view(line).substr(14), value) && value >= 0 && value <= 6) {
+                    data.equipedship = value;
+                }
+                else {
+                    reportInvalidValue(line);
+                    repairSave = true;
+                }
             }
         else if (line.find("normalship = ") == 0) {
                 data.normalship = line.substr(13);
@@ -165,7 +236,14 @@ GameData readFromFile() {
                 data.blackship = line.substr(12);
             }
         else if (line.find("equipedfire = ") == 0) {
-                data.equipedfire = std::stoi(line.substr(14));
+                int value = 0;
+                if (parseNumber(std::string_view(line).substr(14), value) && value >= 0 && value <= 3) {
+                    data.equipedfire = value;
+                }
+                else {
+                    reportInvalidValue(line);
+                    repairSave = true;
+                }
             }
         else if (line.find("normalfire = ") == 0) {
                 data.normalfire = line.substr(13);
@@ -183,7 +261,7 @@ GameData readFromFile() {
         }
         inFile.close();
 
-    if (migrateLegacySave) {
+    if (migrateLegacySave || repairSave) {
         updateGameData(data);
     }
 

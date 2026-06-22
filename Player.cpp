@@ -151,6 +151,23 @@ const sf::FloatRect Player::getBounds() const
     return this->ship.getGlobalBounds();
 }
 
+const sf::FloatRect Player::getHitbox() const
+{
+    const sf::FloatRect bounds = this->ship.getGlobalBounds();
+    constexpr float horizontalReduction = 0.15f;
+    constexpr float verticalReduction = 0.05f;
+
+    const float horizontalInset = bounds.width * horizontalReduction / 2.f;
+    const float verticalInset = bounds.height * verticalReduction / 2.f;
+
+    return sf::FloatRect(
+        bounds.left + horizontalInset,
+        bounds.top + verticalInset,
+        bounds.width * (1.f - horizontalReduction),
+        bounds.height * (1.f - verticalReduction)
+    );
+}
+
 const int& Player::getHp() const
 {
     return this->hp;

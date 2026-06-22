@@ -28,11 +28,11 @@ void Game::renderCreditsMenu()
 
 		const bool isHeading = this->creditLines[i].url.empty();
 		this->creditLineText.setString(this->creditLines[i].label);
-		this->creditLineText.setCharacterSize(isHeading ? 33 : 28);
+		this->creditLineText.setCharacterSize(isHeading ? 32 : 27);
 		this->creditLineText.setStyle(isHeading ? sf::Text::Bold : sf::Text::Regular);
 		if (!isHeading && this->creditLineText.getGlobalBounds().width > 900.f)
 		{
-			this->creditLineText.setCharacterSize(23);
+			this->creditLineText.setCharacterSize(22);
 		}
 		this->creditLineText.setFillColor(
 			static_cast<int>(i) == this->selectedCreditLine ? sf::Color::Yellow : sf::Color::White

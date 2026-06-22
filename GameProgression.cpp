@@ -164,7 +164,7 @@ void Game::updateDifficulty()
 				this->enemyKillCounter = enemyKillCounter + 20;
 			}
 
-			this->enemyKillCounter = enemyKillCounter + 40;
+			this->enemyKillCounter = enemyKillCounter + 50;
 			checkerOne = false;
 			this->backgroundScrollSpeed = 2.0f;
 			cutscene = true;
@@ -374,7 +374,7 @@ void Game::updateDifficulty()
 				this->doubleMeteorChance = 0.f;
 				this->tripleMeteorChance = 0.f;
 
-				this->boss->spawn(sf::Vector2f(560.f, 1000.f), sf::Vector2f(400.f, 600.f));
+				this->boss->spawn(sf::Vector2f(387.5f, 1000.f), sf::Vector2f(387.5f, 600.f));
 			}
 			this->backgroundScrollSpeed = 3.0f;
 			this->checkerThree = false;
@@ -387,18 +387,18 @@ void Game::updateDifficulty()
 		{
 			if(difficulty == 0)
 			{
-				this->deathBeamSpawnRate = 0.09f;
-				this->horizontalEnemySpawnRate = 0.08f;
+				this->deathBeamSpawnRate = 0.08f;
+				this->horizontalEnemySpawnRate = 0.04f;
 			}
 			if(difficulty == 1) 
 			{
-				this->deathBeamSpawnRate = 0.12f;
-				this->horizontalEnemySpawnRate = 0.1f;
+				this->deathBeamSpawnRate = 0.1f;
+				this->horizontalEnemySpawnRate = 0.05f;
 			}
 			if(difficulty == 2)
 			{
-				this->deathBeamSpawnRate = 0.14f;
-				this->horizontalEnemySpawnRate = 0.25f;
+				this->deathBeamSpawnRate = 0.12f;
+				this->horizontalEnemySpawnRate = 0.08f;
 			}
 		}
 
@@ -406,21 +406,21 @@ void Game::updateDifficulty()
 		{
 			if (difficulty == 0)
 			{
-				this->horizontalEnemySpawnRate = 0.2f;
-				this->deathBeamSpawnRate = 0.1f;
+				this->horizontalEnemySpawnRate = 0.06f;
+				this->deathBeamSpawnRate = 0.09f;
 			
 			}
 
 			if (difficulty == 1)
 			{
-				this->horizontalEnemySpawnRate = 0.25f;
-				this->deathBeamSpawnRate = 0.16f;
+				this->horizontalEnemySpawnRate = 0.08f;
+				this->deathBeamSpawnRate = 0.13f;
 			}
 
 			if (difficulty == 2)
 			{
-				this->horizontalEnemySpawnRate = 0.4f;
-				this->deathBeamSpawnRate = 0.175f;
+				this->horizontalEnemySpawnRate = 0.12f;
+				this->deathBeamSpawnRate = 0.15f;
 			
 			}
 		}
@@ -430,22 +430,33 @@ void Game::updateDifficulty()
 		{
 			if (difficulty == 0)
 			{
-				this->horizontalEnemySpawnRate = 0.35f;
+				this->horizontalEnemySpawnRate = 0.1f;
 			}
 			if (difficulty == 1) 
 			{
-				this->horizontalEnemySpawnRate = 0.5f;
+				this->horizontalEnemySpawnRate = 0.13f;
 			}
 			if (difficulty == 2)
 			{
-				this->horizontalEnemySpawnRate = 0.6f;
+				this->horizontalEnemySpawnRate = 0.16f;
 				this->enemySpawnRate = 0.1f;
 			}
 		}
 
 		if(bossIsActive && this->boss->getHp() <= 50 && !stageTransition)
 		{
-			this->horizontalEnemySpawnRate = 0.75f;
+			if (difficulty == 0)
+			{
+				this->horizontalEnemySpawnRate = 0.15f;
+			}
+			if (difficulty == 1)
+			{
+				this->horizontalEnemySpawnRate = 0.2f;
+			}
+			if (difficulty == 2)
+			{
+				this->horizontalEnemySpawnRate = 0.25f;
+			}
 		}
 
 		// Boss defeated rewards
@@ -483,7 +494,7 @@ void Game::updateDifficulty()
 			}
 
 
-			this->enemyKillCounter = enemyKillCounter + 80;
+			this->enemyKillCounter = enemyKillCounter + 85;
 			checkerFour = false;
 			this->backgroundScrollSpeed = 2.0f;
 			cutscene = true;
@@ -709,8 +720,8 @@ void Game::updateDifficulty()
 
 		if (elapsedTime >= timeStamp2 + 89.f && elapsedTime <= timeStamp2 + 90.f)
 		{
-			this->horizontalEnemySpawnRate = 0.25f;
-			this->enemySpawnRate = 0.25f;
+			this->horizontalEnemySpawnRate = 0.1f;
+			this->enemySpawnRate = 0.0f;
 			this->doubleMeteorChance = 0.f;
 		}
 
@@ -830,9 +841,9 @@ void Game::updateDifficulty()
 
 		if (bossIsActive && boss->getHp() <= 400 && boss->getHp() >= 300)
 		{
-			if(difficulty == 1 or difficulty == 2)
+			if(difficulty == 2)
 			{
-				this->enemySpawnRate = 0.75f;
+				this->enemySpawnRate = 0.7f;
 			}
 
 		}
@@ -852,14 +863,6 @@ void Game::updateDifficulty()
 				this->horizontalEnemySpawnRate = 1.0f;
 			}
 
-		}
-
-		if (bossIsActive && boss->getHp() <= 35 && boss->getHp() >= 1)
-		{
-			if(difficulty == 2)
-			{
-				this->deathBeamSpawnRate = 0.2f;
-			}
 		}
 
 		if (bossDefeated && checkerFive)

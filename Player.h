@@ -79,6 +79,7 @@ public:
 	// Accessors
 	const sf::Vector2f& getPos() const;
 	const sf::FloatRect getBounds() const;
+	const sf::FloatRect getHitbox() const;
 	const int& getHp() const;
 	const int& getHpMax() const;
 	const float& getMoveSpeed() const;
