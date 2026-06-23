@@ -1476,7 +1476,7 @@ void Game::initializeWindow()
 	this->view = this->window->getDefaultView();
 
 	sf::Image windowIcon;
-	if (windowIcon.loadFromFile("Textures/Mainship.png"))
+	if (windowIcon.loadFromFile("Textures/AppIcon.png"))
 	{
 		this->window->setIcon(windowIcon.getSize().x, windowIcon.getSize().y, windowIcon.getPixelsPtr());
 	}
