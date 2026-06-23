@@ -4,18 +4,19 @@
 
 Astral Attack is a space shooter made in C++ with SFML.
 
-Move between four lanes, destroy enemy ships, collect power-ups, and survive each stage. Every stage ends with a boss fight.
+Move between four lanes, destroy enemy ships, collect power-ups, and fight the boss at the end of each stage.
 
 ## Gameplay
 
 ![Astral Attack gameplay](Screenshots_for_readme/Gameplayscreen.png)
+![Astral Attack gameplay](Screenshots_for_readme/Boss_fight.png)
 
 - Destroy enemies to earn score and money.
 - Collect power-ups to heal and become stronger.
 - Build up kills to gain shields.
 - Use shields to become temporarily invulnerable.
 - Complete stages and defeat bosses.
-- Choose from several difficulty settings.
+- Choose between three difficulty settings.
 
 ![The player with active shield](Screenshots_for_readme/Shield_effect.png)
 
@@ -23,7 +24,7 @@ Move between four lanes, destroy enemy ships, collect power-ups, and survive eac
 
 ![Astral Attack shop](Screenshots_for_readme/Shopscreen.png)
 
-Spend money earned during a run on new ships, bullets, and engine fire effects. Some items have special unlock conditions.
+Spend money earned during a run on new ships, bullets, and engine fire effects.
 
 ## Controls
 
