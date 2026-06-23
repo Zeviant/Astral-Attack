@@ -631,6 +631,11 @@ void Game::renderEndScreen()
 
 }
 
+void Game::renderHellBonusEndScreen()
+{
+	this->window->draw(this->hellBonusBackground);
+}
+
 void Game::renderSettingsMenu()
 {
 	this->window->draw(this->pausesettingsBackground);

@@ -94,14 +94,13 @@ void Game::updateInput()
 	
 	// DEBUG INPUTS
 
-	
+	/*
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 	{
 		this->player->upgradeDamage();
 		this->player->upgradeAttackSpeed();
 		this->enemyKillCounter = enemyKillCounter + 10;
 		this->points = points + 100000;
-		this->gameData.coins = gameData.coins + 1000;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
@@ -114,6 +113,7 @@ void Game::updateInput()
 	{
 		elapsedTime = elapsedTime + 1.f;
 	}
+	*/
 }
 
 void Game::updateBackground()
@@ -1077,7 +1077,13 @@ void Game::updateDifficultyMenuEffect()
 
 void Game::updateEndScreen()
 {
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
+	const bool enterPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Enter);
+	if (!enterPressed)
+	{
+		this->endScreenEnterReleased = true;
+	}
+
+	if (enterPressed && this->endScreenEnterReleased)
 	{
 		if (gameData.highScore < points)
 		{
@@ -1091,6 +1097,15 @@ void Game::updateEndScreen()
 			gameData.whitefire = "ACQUIRED";
 			updateGameData(gameData);
 		}
+
+		if (this->hellBonusPending)
+		{
+			this->hellBonusPending = false;
+			this->endScreenEnterReleased = false;
+			this->gameState = HELL_BONUS_END;
+			return;
+		}
+
 		this->reset();
 		this->endMusic.stop();
 		this->gameState = MAIN_MENU;
@@ -1115,6 +1130,24 @@ void Game::updateEndScreen()
 
 		// Reset the animation timer
 		earthAnimationTimer -= earthAnimationSpeed;
+	}
+}
+
+void Game::updateHellBonusEndScreen()
+{
+	const bool enterPressed = sf::Keyboard::isKeyPressed(sf::Keyboard::Enter);
+	if (!enterPressed)
+	{
+		this->endScreenEnterReleased = true;
+	}
+
+	if (enterPressed && this->endScreenEnterReleased)
+	{
+		this->reset();
+		this->endMusic.stop();
+		this->gameState = MAIN_MENU;
+		this->menuMusic.play();
+		this->endScreenEnterReleased = false;
 	}
 }
 

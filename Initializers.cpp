@@ -214,6 +214,11 @@ void Game::initializeTextures()
 		std::cout << "TEXTURE::END_BACKGROUND::FAILED_TO_LOAD" << "\n";
 	}
 
+	if (!this->hellBonusTexture.loadFromFile("Textures/hellbonus.png"))
+	{
+		std::cout << "TEXTURE::HELL_BONUS_BACKGROUND::FAILED_TO_LOAD" << "\n";
+	}
+
 }
 
 void Game::initializeSounds()
@@ -699,10 +704,17 @@ void Game::initializeStartMenu()
 
 
 	// Initialize title
+	{
+		sf::FloatRect titleBounds = this->gameTitle.getLocalBounds();
+		this->gameTitle.setOrigin(
+			titleBounds.left + titleBounds.width / 2.f,
+			titleBounds.top + titleBounds.height / 2.f
+		);
+	}
 	this->gameTitle.setPosition
 	(
-		this->window->getSize().x / 2.f - this->gameTitle.getGlobalBounds().width / 2.f + 335.f,
-		this->window->getSize().y / 2.f - this->gameTitle.getGlobalBounds().height / 2.f - 200.f
+		this->window->getSize().x / 2.f,
+		this->window->getSize().y / 2.f - 200.f
 	);
 
 
@@ -1213,6 +1225,18 @@ void Game::initializeEndScreen()
 
 	this->endBackground.setTexture(this->endBackgroundTexture);
 
+	this->hellBonusBackground.setTexture(this->hellBonusTexture);
+	if (this->hellBonusTexture.getSize().x > 0 && this->hellBonusTexture.getSize().y > 0)
+	{
+		this->hellBonusBackground.setScale(
+			static_cast<float>(this->window->getSize().x) / static_cast<float>(this->hellBonusTexture.getSize().x),
+			static_cast<float>(this->window->getSize().y) / static_cast<float>(this->hellBonusTexture.getSize().y)
+		);
+	}
+
+	this->hellBonusPending = false;
+	this->endScreenEnterReleased = false;
+
 }
 
 void Game::initializeDifficultyMenu()
@@ -1406,7 +1430,7 @@ void Game::initializeCreditsMenu()
 		{ "End Screen Planet - Pixel Planet Generator by Deep-Fold", "https://deep-fold.itch.io/pixel-planet-generator" },
 		{ "Asteroid - Void Environment Pack by Foozle", "https://foozlecc.itch.io/void-environment-pack" },
 		{ "Buff Sprites - Celestial Objects by Useless Pursuit", "https://uselesspursuit.itch.io/celestial-objects-pixel-art-pack" },
-		{ "Stage 1 Enemies - Spaceship Shooter Environment by Ansimuz", "https://ansimuz.itch.io/spaceship-shooter-environment" },
+		{ "Stage 1 Enemies & Explosion Effect - Spaceship Shooter Environment by Ansimuz", "https://ansimuz.itch.io/spaceship-shooter-environment" },
 
 		{ "--- FONTS ---", "" },
 		{ "Mephisto - Header Font", "https://fontesk.com/mephisto-font/" },

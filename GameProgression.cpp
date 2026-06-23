@@ -161,7 +161,6 @@ void Game::updateDifficulty()
 			{
 				this->points = points + 75000;
 				this->gameData.coins = gameData.coins + 750;
-				this->enemyKillCounter = enemyKillCounter + 20;
 			}
 
 			this->enemyKillCounter = enemyKillCounter + 50;
@@ -387,17 +386,17 @@ void Game::updateDifficulty()
 		{
 			if(difficulty == 0)
 			{
-				this->deathBeamSpawnRate = 0.08f;
+				this->deathBeamSpawnRate = 0.068f;
 				this->horizontalEnemySpawnRate = 0.04f;
 			}
 			if(difficulty == 1) 
 			{
-				this->deathBeamSpawnRate = 0.1f;
+				this->deathBeamSpawnRate = 0.085f;
 				this->horizontalEnemySpawnRate = 0.05f;
 			}
 			if(difficulty == 2)
 			{
-				this->deathBeamSpawnRate = 0.12f;
+				this->deathBeamSpawnRate = 0.102f;
 				this->horizontalEnemySpawnRate = 0.08f;
 			}
 		}
@@ -407,20 +406,20 @@ void Game::updateDifficulty()
 			if (difficulty == 0)
 			{
 				this->horizontalEnemySpawnRate = 0.06f;
-				this->deathBeamSpawnRate = 0.09f;
+				this->deathBeamSpawnRate = 0.0765f;
 			
 			}
 
 			if (difficulty == 1)
 			{
 				this->horizontalEnemySpawnRate = 0.08f;
-				this->deathBeamSpawnRate = 0.13f;
+				this->deathBeamSpawnRate = 0.1105f;
 			}
 
 			if (difficulty == 2)
 			{
 				this->horizontalEnemySpawnRate = 0.12f;
-				this->deathBeamSpawnRate = 0.15f;
+				this->deathBeamSpawnRate = 0.1275f;
 			
 			}
 		}
@@ -490,11 +489,11 @@ void Game::updateDifficulty()
 			{
 				this->points = points + 150000;
 				this->gameData.coins = gameData.coins + 1500;
-				this->enemyKillCounter = enemyKillCounter + 40;
+				this->enemyKillCounter = enemyKillCounter + 20;
 			}
 
 
-			this->enemyKillCounter = enemyKillCounter + 85;
+			this->enemyKillCounter = enemyKillCounter + 100;
 			checkerFour = false;
 			this->backgroundScrollSpeed = 2.0f;
 			cutscene = true;
@@ -689,7 +688,7 @@ void Game::updateDifficulty()
 			if(difficulty == 0)
 			{
 				this->enemySpawnRate = 0.9f;
-				this->deathBeamSpawnRate = 0.10f;
+				this->deathBeamSpawnRate = 0.8f;
 				this->doubleMeteorChance = 0.f;
 				this->horizontalEnemySpawnRate = 0.8f;
 			}
@@ -697,7 +696,7 @@ void Game::updateDifficulty()
 			if(difficulty == 1)
 			{
 				this->enemySpawnRate = 1.0f;
-				this->deathBeamSpawnRate = 0.12f;
+				this->deathBeamSpawnRate = 0.10f;
 				this->doubleMeteorChance = 0.f;
 				this->horizontalEnemySpawnRate = 1.0f;
 			}
@@ -705,7 +704,7 @@ void Game::updateDifficulty()
 			if (difficulty == 2)
 			{
 				this->enemySpawnRate = 1.25f;
-				this->deathBeamSpawnRate = 0.13f;
+				this->deathBeamSpawnRate = 0.11f;
 				this->doubleMeteorChance = 0.f;
 				this->horizontalEnemySpawnRate = 1.1f;
 			}
@@ -744,7 +743,7 @@ void Game::updateDifficulty()
 
 			if (difficulty == 2)
 			{
-				this->meteorSpawnRate = 2.4f;
+				this->meteorSpawnRate = 2.3f;
 				this->doubleMeteorChance = 55.f;
 				this->horizontalEnemySpawnRate = 0.3f;
 				this->enemySpawnRate = 0.3f;
@@ -939,6 +938,8 @@ void Game::updateDifficulty()
 		if(elapsedTime >= timeStamp + 25.f && checkerFive == false)
 		{
 			cutscene = false;
+			this->hellBonusPending = (this->difficulty == 2);
+			this->endScreenEnterReleased = false;
 			gameState = END;
 		}
 

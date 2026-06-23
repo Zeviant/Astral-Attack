@@ -26,7 +26,8 @@ enum GameState
     DIFFICULTY,
     DEATH_ANIMATION,
     GAME_OVER,
-    END
+    END,
+    HELL_BONUS_END
 };
 
 // GAME ENGINE
@@ -392,6 +393,10 @@ private:
 
     sf::Texture endBackgroundTexture;
     sf::Sprite endBackground;
+    sf::Texture hellBonusTexture;
+    sf::Sprite hellBonusBackground;
+    bool hellBonusPending;
+    bool endScreenEnterReleased;
 
     // Flags
     bool bossIsActive;
@@ -461,6 +466,7 @@ public:
     void updateTitleEffect();
     void updateDifficultyMenuEffect();
     void updateEndScreen();
+    void updateHellBonusEndScreen();
 
 
     void update();
@@ -481,6 +487,7 @@ public:
     void renderDifficultyMenu();
     void renderGameOverMenu();
     void renderEndScreen();
+    void renderHellBonusEndScreen();
     void renderGameElements();
     void renderExplosion(sf::RenderTarget& target);
 };

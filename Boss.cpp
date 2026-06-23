@@ -191,11 +191,11 @@ void Boss::updateAnimation()
         {
             this->animationTimer = 0.f;
             this->currentFrame++;
-            if (this->currentFrame >= 8) // 8 frames
+            if (this->currentFrame >= 8)
             {
                 this->currentFrame = 0;
             }
-            this->fireFrame.left = this->currentFrame * 128; // Frame width is 128
+            this->fireFrame.left = this->currentFrame * 128;
             this->fire.setTextureRect(this->fireFrame);
         }
     }
@@ -207,11 +207,11 @@ void Boss::updateAnimation()
         {
             this->animationTimer = 0.f;
             this->currentFrame++;
-            if (this->currentFrame >= 12) // 12 frames
+            if (this->currentFrame >= 12)
             {
                 this->currentFrame = 0;
             }
-            this->fireFrame.left = this->currentFrame * 128; // Frame width is 128
+            this->fireFrame.left = this->currentFrame * 128;
             this->fire.setTextureRect(this->fireFrame);
         }
     
@@ -224,11 +224,11 @@ void Boss::updateAnimation()
         {
             this->animationTimer = 0.f;
             this->currentFrame++;
-            if (this->currentFrame >= 8) // 12 frames
+            if (this->currentFrame >= 8)
             {
                 this->currentFrame = 0;
             }
-            this->fireFrame.left = this->currentFrame * 128; // Frame width is 128
+            this->fireFrame.left = this->currentFrame * 128;
             this->fire.setTextureRect(this->fireFrame);
         }
     
@@ -330,7 +330,7 @@ void Boss::moveInLoop(float deltaTime)
     // First boss movement
     if (type == 1) {
         // Move in a circular loop
-        angle += 0.5f * deltaTime; // Adjust loop speed as needed
+        angle += 0.5f * deltaTime;
 
         float x = loopCenter.x + (loopRadius + 50) * std::cos(angle);
         float y = loopCenter.y + loopRadius * std::sin(angle);
@@ -364,8 +364,8 @@ void Boss::moveInLoop(float deltaTime)
     // Second boss movement
     else if(type == 2)
     {
-        static float timeElapsed = 0.0f; // Timer to change direction periodically
-        static float changeDirectionInterval = 20.0f; // Interval in seconds to change direction
+        static float timeElapsed = 0.0f;
+        static float changeDirectionInterval = 22.5f;
 
         if (health <= 150)
         {
@@ -426,10 +426,12 @@ void Boss::moveInLoop(float deltaTime)
         float newY = currentPosition.y + directionY * speedY * deltaTime;
 
         // Bounce off the screen edges
-        if (newX < 0 || newX > 1000 - bossSprite.getGlobalBounds().width) {
+        if (newX < 0 || newX > 1000 - bossSprite.getGlobalBounds().width) 
+        {
             directionX = -directionX;
         }
-        if (newY < 0 || newY > 800 - bossSprite.getGlobalBounds().height) {
+        if (newY < 0 || newY > 800 - bossSprite.getGlobalBounds().height) 
+        {
             directionY = -directionY;
         }
 
@@ -525,7 +527,7 @@ void Boss::moveInLoop(float deltaTime)
             }
         }
 
-        // Set fire position (adjust as needed)
+        // Set fire position
         this->fire.setPosition(
             this->bossSprite.getPosition().x + bossWidth / 2 - 258.f,
             this->bossSprite.getPosition().y + bossHeight - 430.f

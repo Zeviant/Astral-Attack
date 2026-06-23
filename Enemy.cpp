@@ -675,7 +675,7 @@ void Enemy::update()
 void Enemy::updateAnimation()
 {
 	// Update animation timer
-	this->animationTimer += 0.1f; // Assuming this function is called frequently (e.g., every frame)
+	this->animationTimer += 0.1f;
 
 	if (this->animationTimer >= this->animationInterval)
 	{
@@ -732,9 +732,9 @@ void Enemy::updateAnimation()
 
 void Enemy::updateBomberAnimation()
 {
-	if (this->type == 5) // Only update for bomber type
+	if (this->type == 5)
 	{
-		this->bomberAnimationTimer += 0.025f; // Assuming this function is called frequently (e.g., every frame)
+		this->bomberAnimationTimer += 0.025f;
 
 		if (this->bomberAnimationTimer >= this->bomberAnimationSpeed)
 		{
@@ -758,9 +758,9 @@ void Enemy::updateBomberAnimation()
 
 void Enemy::updateScoutAnimation()
 {
-	if (this->type == 6) // Only update for scout type
+	if (this->type == 6)
 	{
-		this->scoutAnimationTimer += 0.04f; // Assuming this function is called frequently (e.g., every frame)
+		this->scoutAnimationTimer += 0.04f;
 
 		if (this->scoutAnimationTimer >= this->scoutAnimationSpeed)
 		{
@@ -773,7 +773,7 @@ void Enemy::updateScoutAnimation()
 				this->scoutCurrentFrame = 0;
 
 			// Set texture rect
-			this->scoutFireFrame.left = this->scoutCurrentFrame * 64; // Assuming each frame is 64x64
+			this->scoutFireFrame.left = this->scoutCurrentFrame * 64;
 			this->scoutFire.setTextureRect(this->scoutFireFrame);
 			this->scoutFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY2"]->getSize().x / 2) * 2.75f - 17.f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY2"]->getSize().y) * 2.75f + 18.f);
 		}
@@ -782,9 +782,9 @@ void Enemy::updateScoutAnimation()
 
 void Enemy::updateFrigateAnimation()
 {
-	if (this->type == 7) // Only update for frigate type
+	if (this->type == 7)
 	{
-		this->frigateAnimationTimer += 0.02f; // Assuming this function is called frequently (e.g., every frame)
+		this->frigateAnimationTimer += 0.02f;
 
 		if (this->frigateAnimationTimer >= this->frigateAnimationSpeed)
 		{
@@ -797,7 +797,7 @@ void Enemy::updateFrigateAnimation()
 				this->frigateCurrentFrame = 0;
 
 			// Set texture rect
-			this->frigateFireFrame.left = this->frigateCurrentFrame * 64; // Assuming each frame is 64x64
+			this->frigateFireFrame.left = this->frigateCurrentFrame * 64;
 			this->frigateFire.setTextureRect(this->frigateFireFrame);
 			this->frigateFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY3"]->getSize().x / 2) * 2.75f + 16.f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY3"]->getSize().y) * 2.75f - 25.f);
 		}
@@ -806,9 +806,9 @@ void Enemy::updateFrigateAnimation()
 
 void Enemy::updateFighterAnimation()
 {
-	if (this->type == 8) // Only update for fighter type
+	if (this->type == 8)
 	{
-		this->fighterAnimationTimer += 0.04f; // Assuming this function is called frequently (e.g., every frame)
+		this->fighterAnimationTimer += 0.04f;
 
 		if (this->fighterAnimationTimer >= this->fighterAnimationSpeed)
 		{
@@ -821,7 +821,7 @@ void Enemy::updateFighterAnimation()
 				this->fighterCurrentFrame = 0;
 
 			// Set texture rect
-			this->fighterFrame.left = this->fighterCurrentFrame * 64; // Assuming each frame is 64x64
+			this->fighterFrame.left = this->fighterCurrentFrame * 64;
 			this->fighterFire.setTextureRect(this->fighterFrame);
 			this->fighterFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY4"]->getSize().x / 2) * 2.75f - 28.f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY4"]->getSize().y) * 2.75f - 35.f);
 		}
@@ -830,9 +830,9 @@ void Enemy::updateFighterAnimation()
 
 void Enemy::updateSupportAnimation()
 {
-	if (this->type == 9) // Only update for support type
+	if (this->type == 9)
 	{
-		this->supportAnimationTimer += 0.02f; // Adjust as necessary
+		this->supportAnimationTimer += 0.02f;
 
 		if (this->supportAnimationTimer >= this->supportAnimationSpeed)
 		{
@@ -841,11 +841,11 @@ void Enemy::updateSupportAnimation()
 
 			// Update frame
 			this->supportCurrentFrame++;
-			if (this->supportCurrentFrame >= 10) // Assuming there are 10 frames
+			if (this->supportCurrentFrame >= 10)
 				this->supportCurrentFrame = 0;
 
 			// Set texture rect
-			this->supportFrame.left = this->supportCurrentFrame * 64; // Assuming each frame is 64x64
+			this->supportFrame.left = this->supportCurrentFrame * 64;
 			this->supportFire.setTextureRect(this->supportFrame);
 			this->supportFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY5"]->getSize().x / 2) * 2.75f + 155.f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY5"]->getSize().y) * 2.75f + 42.5f);
 		}
@@ -854,9 +854,9 @@ void Enemy::updateSupportAnimation()
 
 void Enemy::updateTorpedoAnimation()
 {
-	if (this->type == 10) // Only update for torpedo type
+	if (this->type == 10)
 	{
-		this->torpedoAnimationTimer += 0.025f; // Adjust as necessary
+		this->torpedoAnimationTimer += 0.025f;
 
 		if (this->torpedoAnimationTimer >= this->torpedoAnimationSpeed)
 		{
@@ -865,11 +865,11 @@ void Enemy::updateTorpedoAnimation()
 
 			// Update frame
 			this->torpedoCurrentFrame++;
-			if (this->torpedoCurrentFrame >= 10) // Assuming there are 12 frames
+			if (this->torpedoCurrentFrame >= 10)
 				this->torpedoCurrentFrame = 0;
 
 			// Set texture rect
-			this->torpedoFrame.left = this->torpedoCurrentFrame * 64; // Assuming each frame is 64x64
+			this->torpedoFrame.left = this->torpedoCurrentFrame * 64;
 			this->torpedoFire.setTextureRect(this->torpedoFrame);
 			this->torpedoFire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE2ENEMY6"]->getSize().x / 2) * 2.75f - 30.f, this->enemyOne.getPosition().y - (this->textures["STAGE2ENEMY6"]->getSize().y) * 2.75f + 327.f);
 		}
@@ -888,11 +888,11 @@ void Enemy::updateDeathBeamAnimation()
 
 			// Update frame
 			this->deathBeamCurrentFrame++;
-			if (this->deathBeamCurrentFrame >= 4) // Assuming there are 12 frames
+			if (this->deathBeamCurrentFrame >= 4)
 				this->deathBeamCurrentFrame = 0;
 
 			// Set texture rect
-			this->deathBeamFrame.left = this->deathBeamCurrentFrame * 18; // Assuming each frame is 64x64
+			this->deathBeamFrame.left = this->deathBeamCurrentFrame * 18;
 			this->enemyOne.setTextureRect(this->deathBeamFrame);
 		}
 	}
@@ -906,11 +906,11 @@ void Enemy::updateDeathBeamAnimation()
 
 			// Update frame
 			this->deathBeam2CurrentFrame++;
-			if (this->deathBeam2CurrentFrame >= 4) // Assuming there are 12 frames
+			if (this->deathBeam2CurrentFrame >= 4)
 				this->deathBeam2CurrentFrame = 0;
 
 			// Set texture rect
-			this->deathBeam2Frame.left = this->deathBeam2CurrentFrame * 18; // Assuming each frame is 64x64
+			this->deathBeam2Frame.left = this->deathBeam2CurrentFrame * 18;
 			this->enemyOne.setTextureRect(this->deathBeam2Frame);
 		}
 	
@@ -921,7 +921,7 @@ void Enemy::updateStage3Enemy1()
 {
 	if (this->type == 12) 
 	{
-		this->stage3e1AnimationTimer += 0.1f; // Adjust as necessary
+		this->stage3e1AnimationTimer += 0.1f;
 
 		if (this->stage3e1AnimationTimer >= this->stage3e1AnimationSpeed)
 		{
@@ -930,11 +930,11 @@ void Enemy::updateStage3Enemy1()
 
 			// Update frame
 			this->stage3e1CurrentFrame++;
-			if (this->stage3e1CurrentFrame >= 8) // Assuming there are 12 frames
+			if (this->stage3e1CurrentFrame >= 8) 
 				this->stage3e1CurrentFrame = 0;
 
 			// Set texture rect
-			this->stage3e1Frame.left = this->stage3e1CurrentFrame * 64; // Assuming each frame is 64x64
+			this->stage3e1Frame.left = this->stage3e1CurrentFrame * 64;
 			this->stage3e1Fire.setTextureRect(this->stage3e1Frame);
 			this->stage3e1Fire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE3ENEMY1"]->getSize().x / 2) * 2.75f, this->enemyOne.getPosition().y - (this->textures["STAGE3ENEMY1"]->getSize().y) * 2.75f + 38.f);
 		}
@@ -946,7 +946,7 @@ void Enemy::updateStage3Enemy2()
 {
 	if (this->type == 13)
 	{
-		this->stage3e2AnimationTimer += 0.1f; // Adjust as necessary
+		this->stage3e2AnimationTimer += 0.1f; 
 
 		if (this->stage3e2AnimationTimer >= this->stage3e2AnimationSpeed)
 		{
@@ -955,11 +955,11 @@ void Enemy::updateStage3Enemy2()
 
 			// Update frame
 			this->stage3e2CurrentFrame++;
-			if (this->stage3e2CurrentFrame >= 8) // Assuming there are 12 frames
+			if (this->stage3e2CurrentFrame >= 8) 
 				this->stage3e2CurrentFrame = 0;
 
 			// Set texture rect
-			this->stage3e2Frame.left = this->stage3e2CurrentFrame * 64; // Assuming each frame is 64x64
+			this->stage3e2Frame.left = this->stage3e2CurrentFrame * 64;
 			this->stage3e2Fire.setTextureRect(this->stage3e2Frame);
 			this->stage3e2Fire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE3ENEMY2"]->getSize().x / 2) * 2.75f - 1.f, this->enemyOne.getPosition().y - (this->textures["STAGE3ENEMY2"]->getSize().y) * 2.75f + 50.f);
 		}
@@ -971,7 +971,7 @@ void Enemy::updateStage3Enemy3()
 	
 	if (this->type == 14)
 	{
-		this->stage3e3AnimationTimer += 0.1f; // Adjust as necessary
+		this->stage3e3AnimationTimer += 0.1f;
 
 		if (this->stage3e3AnimationTimer >= this->stage3e3AnimationSpeed)
 		{
@@ -980,11 +980,11 @@ void Enemy::updateStage3Enemy3()
 
 			// Update frame
 			this->stage3e3CurrentFrame++;
-			if (this->stage3e3CurrentFrame >= 8) // Assuming there are 12 frames
+			if (this->stage3e3CurrentFrame >= 8)
 				this->stage3e3CurrentFrame = 0;
 
 			// Set texture rect
-			this->stage3e3Frame.left = this->stage3e3CurrentFrame * 64; // Assuming each frame is 64x64
+			this->stage3e3Frame.left = this->stage3e3CurrentFrame * 64; 
 			this->stage3e3Fire.setTextureRect(this->stage3e3Frame);
 			this->stage3e3Fire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE3ENEMY3"]->getSize().x / 2) * 2.75f + 71.f, this->enemyOne.getPosition().y - (this->textures["STAGE3ENEMY3"]->getSize().y) * 2.75f + 10.f);
 		}
@@ -995,7 +995,7 @@ void Enemy::updateStage3Enemy4()
 {
 	if (this->type == 15)
 	{
-		this->stage3e4AnimationTimer += 0.1f; // Adjust as necessary
+		this->stage3e4AnimationTimer += 0.1f;
 
 		if (this->stage3e4AnimationTimer >= this->stage3e4AnimationSpeed)
 		{
@@ -1004,11 +1004,11 @@ void Enemy::updateStage3Enemy4()
 
 			// Update frame
 			this->stage3e4CurrentFrame++;
-			if (this->stage3e4CurrentFrame >= 8) // Assuming there are 12 frames
+			if (this->stage3e4CurrentFrame >= 8)
 				this->stage3e4CurrentFrame = 0;
 
 			// Set texture rect
-			this->stage3e4Frame.left = this->stage3e4CurrentFrame * 64; // Assuming each frame is 64x64
+			this->stage3e4Frame.left = this->stage3e4CurrentFrame * 64;
 			this->stage3e4Fire.setTextureRect(this->stage3e4Frame);
 			this->stage3e4Fire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE3ENEMY4"]->getSize().x / 2) * 2.75f + 38.f, this->enemyOne.getPosition().y - (this->textures["STAGE3ENEMY4"]->getSize().y) * 2.75f + 62.f);
 		}
@@ -1019,7 +1019,7 @@ void Enemy::updateStage3Enemy5()
 {
 
 	if (this->type == 16) {
-		this->stage3e5AnimationTimer += 0.1f; // Adjust as necessary
+		this->stage3e5AnimationTimer += 0.1f;
 
 		if (this->stage3e5AnimationTimer >= this->stage3e5AnimationSpeed)
 		{
@@ -1028,11 +1028,11 @@ void Enemy::updateStage3Enemy5()
 
 			// Update frame
 			this->stage3e5CurrentFrame++;
-			if (this->stage3e5CurrentFrame >= 8) // Assuming there are 12 frames
+			if (this->stage3e5CurrentFrame >= 8)
 				this->stage3e5CurrentFrame = 0;
 
 			// Set texture rect
-			this->stage3e5Frame.left = this->stage3e5CurrentFrame * 64; // Assuming each frame is 64x64
+			this->stage3e5Frame.left = this->stage3e5CurrentFrame * 64;
 			this->stage3e5Fire.setTextureRect(this->stage3e5Frame);
 			this->stage3e5Fire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE3ENEMY5"]->getSize().x / 2) * 2.75f + 176.f, this->enemyOne.getPosition().y - (this->textures["STAGE3ENEMY5"]->getSize().y) * 2.75f + 44.f);
 		}
@@ -1043,7 +1043,7 @@ void Enemy::updateStage3Enemy6()
 {
 	if(this->type == 17)
 	{
-		this->stage3e6AnimationTimer += 0.1f; // Adjust as necessary
+		this->stage3e6AnimationTimer += 0.1f;
 
 		if (this->stage3e6AnimationTimer >= this->stage3e6AnimationSpeed)
 		{
@@ -1052,11 +1052,11 @@ void Enemy::updateStage3Enemy6()
 
 			// Update frame
 			this->stage3e6CurrentFrame++;
-			if (this->stage3e6CurrentFrame >= 8) // Assuming there are 12 frames
+			if (this->stage3e6CurrentFrame >= 8)
 				this->stage3e6CurrentFrame = 0;
 
 			// Set texture rect
-			this->stage3e6Frame.left = this->stage3e6CurrentFrame * 64; // Assuming each frame is 64x64
+			this->stage3e6Frame.left = this->stage3e6CurrentFrame * 64;
 			this->stage3e6Fire.setTextureRect(this->stage3e6Frame);
 			this->stage3e6Fire.setPosition(this->enemyOne.getPosition().x - (this->textures["STAGE3ENEMY6"]->getSize().x / 2) * 2.75f - 25.f, this->enemyOne.getPosition().y - (this->textures["STAGE3ENEMY6"]->getSize().y) * 2.75f + 212.f);
 		}
@@ -1070,32 +1070,32 @@ void Enemy::updateStage3Enemy6()
 void Enemy::render(sf::RenderTarget& target)
 {
 
-	if (this->type == 5) // Only render for bomber type
+	if (this->type == 5)
 	{
 		target.draw(this->bomberFire);
 	}
 
-	if (this->type == 6) // Only render for scout type
+	if (this->type == 6)
 	{
 		target.draw(this->scoutFire);
 	}
 
-	if (this->type == 7) // Only render for frigate type
+	if (this->type == 7)
 	{
 		target.draw(this->frigateFire);
 	}
 
-	if (this->type == 8) // Only render for fighter type
+	if (this->type == 8)
 	{
 		target.draw(this->fighterFire);
 	}
 
-	if (this->type == 9) // Only render for support type
+	if (this->type == 9)
 	{
 		target.draw(this->supportFire);
 	}
 
-	if (this->type == 10) // Only render for torpedo type
+	if (this->type == 10)
 	{
 		target.draw(this->torpedoFire);
 	}

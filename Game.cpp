@@ -368,6 +368,10 @@ void Game::update()
 	{
 		this->updateEndScreen();
 	}
+	if (this->gameState == HELL_BONUS_END)
+	{
+		this->updateHellBonusEndScreen();
+	}
 }
 
 // Renders
@@ -466,6 +470,11 @@ void Game::render()
 	if(this->gameState == END)
 	{
 		this->renderEndScreen();
+	}
+
+	if (this->gameState == HELL_BONUS_END)
+	{
+		this->renderHellBonusEndScreen();
 	}
 
 	if(bossIsActive && Stage == 3)
