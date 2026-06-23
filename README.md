@@ -9,7 +9,7 @@ Move between four lanes, destroy enemy ships, collect power-ups, and fight the b
 ## Gameplay
 
 ![Astral Attack gameplay](Screenshots_for_readme/Gameplayscreen.png)
-![Astral Attack gameplay](Screenshots_for_readme/Boss_fight.png)
+![Astral Attack gameplay](Screenshots_for_readme/Boss2.png)
 
 - Destroy enemies to earn score and money.
 - Collect power-ups to heal and become stronger.
