@@ -62,7 +62,7 @@ The original game code is available under the [MIT License](LICENSE). Third-part
 - [End Screen Planet — Pixel Planet Generator by Deep-Fold](https://deep-fold.itch.io/pixel-planet-generator) — MIT License
 - [Asteroid — Void Environment Pack by Foozle](https://foozlecc.itch.io/void-environment-pack) — CC0
 - [Buff Sprites — Celestial Objects by Useless Pursuit](https://uselesspursuit.itch.io/celestial-objects-pixel-art-pack) — Free for commercial and non-commercial projects
-- [Stage 1 Enemies — Spaceship Shooter Environment by Ansimuz](https://ansimuz.itch.io/spaceship-shooter-environment) — CC0
+- [Stage 1 Enemies & Explosion Effect — Spaceship Shooter Environment by Ansimuz](https://ansimuz.itch.io/spaceship-shooter-environment) — CC0
 
 ### Fonts
 

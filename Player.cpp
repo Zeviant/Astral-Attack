@@ -32,7 +32,7 @@ void Player::initializeVariables()
     }
 
     this->shieldActive = false;
-    this->shieldDuration = 4.0f; // Shield lasts for 4 seconds
+    this->shieldDuration = 4.0f;
     this->shieldTimer = 0.0f;
 
     this->damageMAX = false;
@@ -102,7 +102,7 @@ void Player::initializeAnimation()
 {
     this->currentFrame = 0;
     this->animationTimer = 0.f;
-    this->animationSpeed = 0.1f; // Speed of the animation
+    this->animationSpeed = 0.1f;
 
     this->currentFrameShield = 0;
     this->animationTimerShield = 0.f;
@@ -481,11 +481,11 @@ void Player::updateAnimation()
     {
         this->animationTimer = 0.f;
         this->currentFrame++;
-        if (this->currentFrame >= 3) // 3 frames
+        if (this->currentFrame >= 3)
         {
             this->currentFrame = 0;
         }
-        this->fireFrame.left = this->currentFrame * 48; // Frame width is 48
+        this->fireFrame.left = this->currentFrame * 48;
         this->fire.setTextureRect(this->fireFrame);
     }
 
@@ -500,11 +500,11 @@ void Player::updateAnimationShield()
         {
             this->animationTimerShield = 0.f;
             this->currentFrameShield++;
-            if (this->currentFrameShield >= 8) // 8 frames
+            if (this->currentFrameShield >= 8)
             {
                 this->currentFrameShield = 0;
             }
-            this->shieldFrame.left = this->currentFrameShield * 64; // Frame width is 64
+            this->shieldFrame.left = this->currentFrameShield * 64;
             this->shield.setTextureRect(this->shieldFrame);
         }
     }
@@ -527,7 +527,7 @@ void Player::update()
 
     if (this->shieldActive)
     {
-        this->shieldTimer += 0.01667f; // Assuming update is called at approximately 60 FPS
+        this->shieldTimer += 0.01667f;
         if (this->shieldTimer >= this->shieldDuration)
         {
             this->shieldActive = false;

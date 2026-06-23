@@ -1,7 +1,5 @@
 #include "Game.h"
 
-// All update functions are here
-
 void Game::updateInput()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape) && !cutscene)
