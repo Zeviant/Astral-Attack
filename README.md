@@ -10,6 +10,7 @@ Move between four lanes, destroy enemy ships, collect power-ups, and fight the b
 
 ![Astral Attack gameplay](Screenshots_for_readme/Gameplayscreen.png)
 ![Astral Attack gameplay](Screenshots_for_readme/Boss2.png)
+![The player with active shield](Screenshots_for_readme/Shield_effect.png)
 
 - Destroy enemies to earn score and money.
 - Collect power-ups to heal and become stronger.
@@ -17,8 +18,6 @@ Move between four lanes, destroy enemy ships, collect power-ups, and fight the b
 - Use shields to become temporarily invulnerable.
 - Complete stages and defeat bosses.
 - Choose between three difficulty settings.
-
-![The player with active shield](Screenshots_for_readme/Shield_effect.png)
 
 ## Shop
 
