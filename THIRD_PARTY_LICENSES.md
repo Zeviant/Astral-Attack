@@ -45,7 +45,7 @@ The MIT License in `LICENSE` applies only to the original Astral Attack source c
 - [Shield — Joao_Janz](https://freesound.org/people/Joao_Janz/sounds/478342/) — CC0
 - [Kill Counter Max — GameAudio](https://freesound.org/people/GameAudio/sounds/220173/) — CC0
 - [Buy — wobesound](https://freesound.org/people/wobesound/sounds/488377/) — CC0
-- [Insufficient Money — Raclure](https://freesound.org/people/Raclure/sounds/483598/) — CC0
+- [Insufficient Coins — Raclure](https://freesound.org/people/Raclure/sounds/483598/) — CC0
 - [Equip — GameWithBepis](https://freesound.org/people/GameWithBepis/sounds/561471/) — CC0
 - [Set Difficulty](https://pixabay.com/sound-effects/menu-button-89141/) — Pixabay Content License
 - [Second Boss Warning — StavSounds](https://freesound.org/people/StavSounds/sounds/701702/) — CC0

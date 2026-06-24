@@ -29,12 +29,17 @@ Spend money earned during a run on new ships, bullets, and engine fire effects.
 
 ## Controls
 
+Gameplay:
 - **Left / Right:** Change lanes
 - **Up / Down:** Move within a lane
 - **Z:** Shoot
 - **X:** Use a shield
 - **P or Escape:** Pause
-- **Enter:** Select a menu option
+
+Menu:
+- **Up / Down:** Traverse menu
+- **Enter / Z:** Select a menu option
+- **Escape / X:** Return
 
 ## Running the game
 

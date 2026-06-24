@@ -214,6 +214,12 @@ float Game::getSoundFx()
 	return soundfxVolume;
 }
 
+void Game::addCoins(int amount)
+{
+	constexpr int maxCoins = 99999;
+	this->gameData.coins = std::clamp(this->gameData.coins + amount, 0, maxCoins);
+}
+
 float Game::clampVolume(float volume) const
 {
 	return std::clamp(volume, 0.f, 100.f);
@@ -273,6 +279,15 @@ void Game::updatePollEvents()
 		}
 		if (ev.type == sf::Event::KeyPressed)
 		{
+			if (ev.key.code == sf::Keyboard::Z)
+			{
+				ev.key.code = sf::Keyboard::Return;
+			}
+			else if (ev.key.code == sf::Keyboard::X)
+			{
+				ev.key.code = sf::Keyboard::Escape;
+			}
+
 			switch (this->gameState)
 			{
 			case MAIN_MENU:
@@ -408,6 +423,7 @@ void Game::render()
 
 	if (this->gameState == PAUSED)
 	{
+		this->updateGUI();
 		this->renderWorld();
 		this->renderGameElements();
 
@@ -421,6 +437,7 @@ void Game::render()
 
 	if (this->gameState == SETTINGS && prevgameState == PAUSED)
 	{
+		this->updateGUI();
 		this->renderWorld();
 		this->renderGameElements();
 		this->renderSettingsMenu();

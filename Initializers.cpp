@@ -437,9 +437,9 @@ void Game::initializeGUI()
 	this->pointText.setPosition(25.f, 15.f);
 	this->pointText.setString("ERROR");
 
-	//Initialize money text
+	//Initialize coins text
 	this->coinText.setFont(this->font);
-	this->coinText.setCharacterSize(35);
+	this->coinText.setCharacterSize(30);
 	this->coinText.setFillColor(sf::Color::White);
 	// this->coinText.setStyle(sf::Text::Bold);
 	// this->coinText.setFillColor(sf::Color::Black);
@@ -450,7 +450,7 @@ void Game::initializeGUI()
 
 	// Initialize kill counter text
 	this->killCounterText.setFont(this->font);
-	this->killCounterText.setCharacterSize(35);
+	this->killCounterText.setCharacterSize(30);
 	this->killCounterText.setFillColor(sf::Color::White);
 	//this->killCounterText.setStyle(sf::Text::Bold);
 	//this->killCounterText.setFillColor(sf::Color::Black);
@@ -474,14 +474,14 @@ void Game::initializeGUI()
 
 	// Initialize damage text
 	this->damageText.setFont(this->font);
-	this->damageText.setCharacterSize(32);
+	this->damageText.setCharacterSize(30);
 	this->damageText.setFillColor(sf::Color::White);
 	this->damageText.setString("ERROR");
 	this->damageText.setPosition(15.f, 660.f);
 
 	// Initialize fire rate text
 	this->fireRateText.setFont(this->font);
-	this->fireRateText.setCharacterSize(32);
+	this->fireRateText.setCharacterSize(30);
 	this->fireRateText.setFillColor(sf::Color::White);
 	this->fireRateText.setString("ERROR");
 	this->fireRateText.setPosition(15.f, 690.f);
@@ -1100,7 +1100,7 @@ void Game::initializeShopMenu()
 	);
 
 	std::stringstream ss2;
-	ss2 << "Money: " << this->gameData.coins << "$";
+	ss2 << "Coins: " << this->gameData.coins << "$";
 	this->coinAmount.setString(ss2.str());
 	this->coinAmount.setFont(this->font);
 	this->coinAmount.setCharacterSize(47);
@@ -1172,7 +1172,7 @@ void Game::initializeTutorialMenu()
 	this->keybindingsExplanation.setFont(this->font);
 	this->keybindingsExplanation.setCharacterSize(33);
 	this->keybindingsExplanation.setFillColor(sf::Color::White);
-	this->keybindingsExplanation.setString("Left/Right --> Move between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal for 1 hp, spawns every minute \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Money\n");
+	this->keybindingsExplanation.setString("Left/Right --> Move between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal for 1 hp, spawns every minute \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Coins\n");
 	this->keybindingsExplanation.setPosition(
 		this->window->getSize().x / 2.f - this->keybindingsExplanation.getGlobalBounds().width / 2.f,
 		this->window->getSize().y / 2.f - this->keybindingsExplanation.getGlobalBounds().height / 2.f
@@ -1386,14 +1386,35 @@ void Game::initializeSettingsMenu()
 	float soundfxvolumePercent = static_cast<float>(this->soundfxVolume / static_cast<float>(10));
 	this->soundfxvolumeIndicator.setSize(sf::Vector2f(300.f * soundfxvolumePercent, this->soundfxvolumeIndicator.getSize().y));
 
-	// Initialize Back to Main Menu menu item
+	this->hideDamageAndFireRate = false;
+	this->playerStatsUpperRight = false;
+
+	this->hideStatsText.setFont(this->font);
+	this->hideStatsText.setCharacterSize(47);
+	this->hideStatsText.setFillColor(sf::Color::White);
+	this->hideStatsText.setString("Hide DMG & Bullets/s: OFF");
+	this->hideStatsText.setPosition(
+		this->window->getSize().x / 2.f - this->hideStatsText.getGlobalBounds().width / 2.f,
+		this->window->getSize().y / 2.f - this->hideStatsText.getGlobalBounds().height / 2.f + 130.f
+	);
+
+	this->statsPositionText.setFont(this->font);
+	this->statsPositionText.setCharacterSize(47);
+	this->statsPositionText.setFillColor(sf::Color::White);
+	this->statsPositionText.setString("Player Stats Position: Bottom Left");
+	this->statsPositionText.setPosition(
+		this->window->getSize().x / 2.f - this->statsPositionText.getGlobalBounds().width / 2.f,
+		this->window->getSize().y / 2.f - this->statsPositionText.getGlobalBounds().height / 2.f + 180.f
+	);
+
+	// Initialize Return menu item
 	this->backText.setFont(this->font);
 	this->backText.setCharacterSize(47);
 	this->backText.setFillColor(sf::Color::White);
-	this->backText.setString("Back");
+	this->backText.setString("Return");
 	this->backText.setPosition(
 		this->window->getSize().x / 2.f - this->backText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->backText.getGlobalBounds().height / 2.f + 100.f
+		this->window->getSize().y / 2.f - this->backText.getGlobalBounds().height / 2.f + 240.f
 	);
 }
 
@@ -1473,7 +1494,7 @@ void Game::initializeCreditsMenu()
 		{ "Shield - Joao_Janz", "https://freesound.org/people/Joao_Janz/sounds/478342/" },
 		{ "Kill Counter Max - GameAudio", "https://freesound.org/people/GameAudio/sounds/220173/" },
 		{ "Buy - wobesound", "https://freesound.org/people/wobesound/sounds/488377/" },
-		{ "Insufficient Money - Raclure", "https://freesound.org/people/Raclure/sounds/483598/" },
+		{ "Insufficient Coins - Raclure", "https://freesound.org/people/Raclure/sounds/483598/" },
 		{ "Equip - GameWithBepis", "https://freesound.org/people/GameWithBepis/sounds/561471/" },
 		{ "Set Difficulty - Pixabay", "https://pixabay.com/sound-effects/menu-button-89141/" },
 		{ "Second Boss Warning - StavSounds", "https://freesound.org/people/StavSounds/sounds/701702/" }

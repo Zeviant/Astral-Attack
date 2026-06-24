@@ -150,17 +150,17 @@ void Game::updateDifficulty()
 			bossDefeated = false;
 			if (difficulty == 0) {
 				this->points = points + 25000;
-				this->gameData.coins = gameData.coins + 250;
+				this->addCoins(250);
 			}
 			if (difficulty == 1)
 			{
 				this->points = points + 50000;
-				this->gameData.coins = gameData.coins + 500;
+				this->addCoins(500);
 			}
 			if(difficulty == 2)
 			{
 				this->points = points + 75000;
-				this->gameData.coins = gameData.coins + 750;
+				this->addCoins(750);
 			}
 
 			this->enemyKillCounter = enemyKillCounter + 50;
@@ -173,7 +173,7 @@ void Game::updateDifficulty()
 		if (elapsedTime >= timeStamp + 5.f && stageTransition)
 		{
 			this->healthItemSpawnRate = 0.5f;
-			this->dpsItemSpawnRate = 2.0f;
+			this->dpsItemSpawnRate = 1.5f;
 			bossIsActive = false;
 			stageTransition = false;
 			victoryTune.play();
@@ -375,7 +375,7 @@ void Game::updateDifficulty()
 			this->updateSoundFXVolume();
 		}
 
-		if(bossIsActive && this->boss->getHp() <= 310 && !stageTransition)
+		if(bossIsActive && this->boss->getHp() <= 350 && !stageTransition)
 		{
 			if(difficulty == 0)
 			{
@@ -385,12 +385,12 @@ void Game::updateDifficulty()
 			if(difficulty == 1) 
 			{
 				this->deathBeamSpawnRate = 0.09f;
-				this->horizontalEnemySpawnRate = 0.09f;
+				this->horizontalEnemySpawnRate = 0.2f;
 			}
 			if(difficulty == 2)
 			{
 				this->deathBeamSpawnRate = 0.102f;
-				this->horizontalEnemySpawnRate = 0.12f;
+				this->horizontalEnemySpawnRate = 0.3f;
 			}
 		}
 
@@ -468,20 +468,20 @@ void Game::updateDifficulty()
 			if (difficulty == 0)
 			{
 				this->points = points + 50000;
-				this->gameData.coins = gameData.coins + 500;
+				this->addCoins(500);
 
 			}
 
 			if (difficulty == 1) 
 			{
 				this->points = points + 100000;
-				this->gameData.coins = gameData.coins + 1000;
+				this->addCoins(1000);
 			}
 
 			if (difficulty == 2)
 			{
 				this->points = points + 150000;
-				this->gameData.coins = gameData.coins + 1500;
+				this->addCoins(1500);
 				this->enemyKillCounter = enemyKillCounter + 20;
 			}
 
@@ -872,19 +872,19 @@ void Game::updateDifficulty()
 			if(this->difficulty == 0)
 			{
 				this->points = points + 125000;
-				this->gameData.coins = gameData.coins + 1250;
+				this->addCoins(1250);
 			}
 
 			if(this->difficulty == 1)
 			{
 				this->points = points + 250000;
-				this->gameData.coins = gameData.coins + 2500;
+				this->addCoins(2500);
 			}
 
 			if(this->difficulty == 2)
 			{
 				this->points = points + 500000;
-				this->gameData.coins = gameData.coins + 5000;
+				this->addCoins(5000);
 			}
 
 			this->gameData.gameCompleted = true;

@@ -55,8 +55,11 @@ void Game::renderGUI()
 	this->window->draw(this->killCounterText);
 	//this->window->draw(this->playerHpBarBack);
 	//this->window->draw(this->playerHpBar);
-	this->window->draw(this->damageText);
-	this->window->draw(this->fireRateText);
+	if (!this->hideDamageAndFireRate)
+	{
+		this->window->draw(this->damageText);
+		this->window->draw(this->fireRateText);
+	}
 	this->window->draw(this->timerText);
 	this->window->draw(this->playerHealthBar);
 	this->window->draw(this->shieldIcon);
@@ -248,7 +251,7 @@ void Game::renderStartMenu()
 	this->window->draw(this->creditsText);
 	this->window->draw(this->quitText);
 	std::stringstream ss2;
-	ss2 << "Money: " << this->gameData.coins << "$";
+	ss2 << "Coins: " << this->gameData.coins << "$";
 	this->coinAmount.setString(ss2.str());
 	this->window->draw(this->coinAmount);
 	std::stringstream ss5;
@@ -276,7 +279,7 @@ void Game::renderShopMenu()
 	this->window->draw(this->pausesettingsBackground);
 	this->window->draw(this->shopTitle);
 	std::stringstream ss2;
-	ss2 << "Money: " << this->gameData.coins << "$";
+	ss2 << "Coins: " << this->gameData.coins << "$";
 	this->coinAmount.setString(ss2.str());
 	this->window->draw(this->coinAmount);
 	this->returnfromshopText.setFillColor(sf::Color::White);
@@ -643,11 +646,29 @@ void Game::renderSettingsMenu()
 	this->window->draw(this->pausesettingsBackground);
 	this->musicvolumeText.setFillColor(sf::Color::White);
 	this->soundfxText.setFillColor(sf::Color::White);
+	this->hideStatsText.setFillColor(sf::Color::White);
+	this->statsPositionText.setFillColor(sf::Color::White);
 	this->backText.setFillColor(sf::Color::White);
 	this->musicvolumeBorder.setOutlineColor(sf::Color::White);
 	this->musicvolumeIndicator.setFillColor(sf::Color(255, 255, 255, 75));
 	this->soundfxvolumeBorder.setOutlineColor(sf::Color::White);
 	this->soundfxvolumeIndicator.setFillColor(sf::Color(255, 255, 255, 75));
+
+	this->hideStatsText.setString(
+		this->hideDamageAndFireRate ? "Hide DMG & Bullets/s: ON" : "Hide DMG & Bullets/s: OFF"
+	);
+	this->hideStatsText.setPosition(
+		this->window->getSize().x / 2.f - this->hideStatsText.getGlobalBounds().width / 2.f,
+		this->window->getSize().y / 2.f - this->hideStatsText.getGlobalBounds().height / 2.f + 130.f
+	);
+
+	this->statsPositionText.setString(
+		this->playerStatsUpperRight ? "Player Stats Position: Upper Right" : "Player Stats Position: Bottom Left"
+	);
+	this->statsPositionText.setPosition(
+		this->window->getSize().x / 2.f - this->statsPositionText.getGlobalBounds().width / 2.f,
+		this->window->getSize().y / 2.f - this->statsPositionText.getGlobalBounds().height / 2.f + 180.f
+	);
 
 	// Highlight the selected menu item
 	switch (this->selectedMenuItem)
@@ -664,6 +685,12 @@ void Game::renderSettingsMenu()
 		this->soundfxvolumeIndicator.setFillColor(sf::Color(255, 255, 0, 75));
 		break;
 	case 2:
+		this->hideStatsText.setFillColor(sf::Color::Yellow);
+		break;
+	case 3:
+		this->statsPositionText.setFillColor(sf::Color::Yellow);
+		break;
+	case 4:
 		this->backText.setFillColor(sf::Color::Yellow);
 		break;
 	}
@@ -676,5 +703,7 @@ void Game::renderSettingsMenu()
 	this->window->draw(this->soundfxText);
 	this->window->draw(this->soundfxvolumeBorder);
 	this->window->draw(this->soundfxvolumeIndicator);
+	this->window->draw(this->hideStatsText);
+	this->window->draw(this->statsPositionText);
 	this->window->draw(this->backText);
 }

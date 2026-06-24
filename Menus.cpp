@@ -611,6 +611,11 @@ void Game::handleSettingsMenuInput(const sf::Event& ev)
 	if (ev.key.code == sf::Keyboard::Escape)
 	{
 		this->gameState = this->prevgameState;
+		this->selectedMenuItem = 0;
+		if (this->prevgameState == GAMEPLAY)
+		{
+			this->stageMusic.play();
+		}
 	}
 	if (ev.key.code == sf::Keyboard::Up)
 	{
@@ -622,7 +627,7 @@ void Game::handleSettingsMenuInput(const sf::Event& ev)
 	}
 	if (ev.key.code == sf::Keyboard::Down)
 	{
-		if (this->selectedMenuItem < 2)
+		if (this->selectedMenuItem < 4)
 		{
 			this->menuSound.play();
 			this->selectedMenuItem++;
@@ -655,6 +660,20 @@ void Game::handleSettingsMenuInput(const sf::Event& ev)
 		}
 		break;
 	case 2:
+		if (ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::Return)
+		{
+			this->hideDamageAndFireRate = !this->hideDamageAndFireRate;
+			this->menuSound.play();
+		}
+		break;
+	case 3:
+		if (ev.key.code == sf::Keyboard::Left || ev.key.code == sf::Keyboard::Right || ev.key.code == sf::Keyboard::Return)
+		{
+			this->playerStatsUpperRight = !this->playerStatsUpperRight;
+			this->menuSound.play();
+		}
+		break;
+	case 4:
 		if (ev.key.code == sf::Keyboard::Return)
 		{
 			this->gameState = this->prevgameState;

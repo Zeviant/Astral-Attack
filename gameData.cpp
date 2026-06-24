@@ -7,6 +7,7 @@
 #include <charconv>
 #include <string_view>
 #include <system_error>
+#include <algorithm>
 
 namespace
 {
@@ -135,7 +136,10 @@ GameData readFromFile() {
             if (line.find("coins = ") == 0) {
                 int value = 0;
                 if (parseNumber(std::string_view(line).substr(8), value) && value >= 0) {
-                    data.coins = value;
+                    data.coins = std::min(value, 99999);
+                    if (value > 99999) {
+                        repairSave = true;
+                    }
                 }
                 else {
                     reportInvalidValue(line);

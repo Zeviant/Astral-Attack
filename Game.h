@@ -378,7 +378,11 @@ private:
     sf::Text soundfxText;
     sf::RectangleShape soundfxvolumeBorder;
     sf::RectangleShape soundfxvolumeIndicator;
+    sf::Text hideStatsText;
+    sf::Text statsPositionText;
     sf::Text backText;
+    bool hideDamageAndFireRate;
+    bool playerStatsUpperRight;
 
     int selectedMenuItem;
     int shopselectedMenuItem = 0;
@@ -445,6 +449,7 @@ public:
     void triggerFadeEffect();
     void applyScreenShake(float intensity);
     float getSoundFx();
+    void addCoins(int amount);
 
     // Updaters
     void updatePollEvents();

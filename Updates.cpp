@@ -100,7 +100,6 @@ void Game::updateInput()
 			this->player->upgradeDamage();
 			this->player->upgradeAttackSpeed();
 			this->enemyKillCounter = enemyKillCounter + 10;
-			this->points = points + 100000;
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
@@ -146,7 +145,7 @@ void Game::updateGUI()
 
 	// Update Coins
 	std::stringstream ss2;
-	ss2 << "Money: " << this->gameData.coins << "$";
+	ss2 << "Coins: " << this->gameData.coins << "$";
 	this->coinText.setString(ss2.str());
 
 	// Update Player GUI
@@ -273,6 +272,26 @@ void Game::updateGUI()
 		fireRateStream << "Bullets/s: MAX";
 	}
 	this->fireRateText.setString(fireRateStream.str());
+
+	if (this->playerStatsUpperRight)
+	{
+		const float rightMargin = 15.f;
+		const float topY = 45.f;
+		const float lineSpacing = 30.f;
+		const float rightEdge = static_cast<float>(this->window->getSize().x) - rightMargin;
+
+		this->coinText.setPosition(rightEdge - this->coinText.getGlobalBounds().width, topY);
+		this->killCounterText.setPosition(rightEdge - this->killCounterText.getGlobalBounds().width, topY + lineSpacing);
+		this->fireRateText.setPosition(rightEdge - this->fireRateText.getGlobalBounds().width, topY + lineSpacing * 2.f);
+		this->damageText.setPosition(rightEdge - this->damageText.getGlobalBounds().width, topY + lineSpacing * 3.f);
+	}
+	else
+	{
+		this->damageText.setPosition(15.f, 660.f);
+		this->fireRateText.setPosition(15.f, 690.f);
+		this->killCounterText.setPosition(15.f, 720.f);
+		this->coinText.setPosition(15.f, 750.f);
+	}
 }
 
 
@@ -783,7 +802,7 @@ void Game::updateItems()
 			else if (item->getType() == 4)
 			{
 				this->points = this->points + item->getPoints();
-				this->gameData.coins = this->gameData.coins + 50;
+				this->addCoins(50);
 				this->bulletSpeed = this->bulletSpeed + 0.2f;
 				this->powerUpSound.play();
 			}
@@ -816,7 +835,7 @@ void Game::updateCombat()
 				if (enemies[i]->getHp() <= 0) 
 				{
 					this->points += this->enemies[i]->getPoints();
-					this->gameData.coins += 5;
+					this->addCoins(5);
 
 					// Create explosion at the enemy's position
 					this->explosions.push_back(new Explosion(this->enemies[i]->getPos().x, this->enemies[i]->getPos().y, this->enemies[i]->getBounds().getSize()));

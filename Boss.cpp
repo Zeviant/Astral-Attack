@@ -332,7 +332,7 @@ void Boss::moveInLoop(float deltaTime)
         // Move in a circular loop
         angle += 0.5f * deltaTime;
 
-        float x = loopCenter.x + (loopRadius + 50) * std::cos(angle);
+        float x = loopCenter.x + (loopRadius + 50.f) * std::cos(angle);
         float y = loopCenter.y + loopRadius * std::sin(angle);
 
         bossSprite.setPosition(x, y);
