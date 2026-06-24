@@ -10,7 +10,8 @@ void Player::initializeVariables()
     this->invincibilityDuration = 1.f;
     this->invincibilityTimer = 0.0f;
 
-    this->attackCooldownMax = 24.f;
+    this->bulletsPerSecond = 2.5f;
+    this->attackCooldownMax = 60.f / this->bulletsPerSecond;
     this->attackCooldown = this->attackCooldownMax;
 
     if(this->difficulty == 0)
@@ -188,6 +189,16 @@ const float& Player::getDamage() const
     return this->damage;
 }
 
+const float& Player::getAttackCooldown() const
+{
+    return this->attackCooldownMax;
+}
+
+const float& Player::getBulletsPerSecond() const
+{
+    return this->bulletsPerSecond;
+}
+
 const bool Player::getFireRateMAX() const
 {
     return fireRateMAX;
@@ -325,7 +336,7 @@ void Player::startInvincibility()
 void Player::upgradeDamage()
 {
     this->damage = this->damage + 0.25f;
-    if(this->damage > 4.0)
+    if(this->damage >= 4.0)
     {
         this->damage = 4.0;
         this->damageMAX = true;
@@ -335,12 +346,14 @@ void Player::upgradeDamage()
 
 void Player::upgradeAttackSpeed()
 {
-    this->attackCooldownMax = this->attackCooldownMax - 1.f;
-    if(this->attackCooldownMax < 13)
+    this->bulletsPerSecond = this->bulletsPerSecond + 0.25f;
+    if(this->bulletsPerSecond >= 5.f)
     {
-        this->attackCooldownMax = 11.5f;
+        this->bulletsPerSecond = 5.f;
         this->fireRateMAX = true;
     }
+
+    this->attackCooldownMax = 60.f / this->bulletsPerSecond;
 }
 
 // Load saved ship color

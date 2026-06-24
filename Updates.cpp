@@ -92,26 +92,29 @@ void Game::updateInput()
 	
 	// DEBUG INPUTS
 
-	/*
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+	bool debugMode = true;
+	if (debugMode == true)
 	{
-		this->player->upgradeDamage();
-		this->player->upgradeAttackSpeed();
-		this->enemyKillCounter = enemyKillCounter + 10;
-		this->points = points + 100000;
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
+		{
+			this->player->upgradeDamage();
+			this->player->upgradeAttackSpeed();
+			this->enemyKillCounter = enemyKillCounter + 10;
+			this->points = points + 100000;
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
-	{
-		this->player->setHp(5);
-		this->gameData.normalVictory = true;
-	}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+		{
+			this->player->setHp(5);
+			this->gameData.normalVictory = true;
+		}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
-	{
-		elapsedTime = elapsedTime + 1.f;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num3))
+		{
+			elapsedTime = elapsedTime + 1.f;
+		}
 	}
-	*/
+	
 }
 
 void Game::updateBackground()
@@ -245,6 +248,31 @@ void Game::updateGUI()
 			lastKillThreshold = 400;
 		}
 	}
+
+	std::stringstream damageStream;
+	if(!this->player->getDamageMAX())
+	{
+		damageStream << "DMG: " << this->player->getDamage();
+	}
+	else
+	{
+		damageStream << "DMG: MAX";
+	}
+
+	this->damageText.setString(damageStream.str());
+
+	std::stringstream fireRateStream;
+	fireRateStream << std::fixed << std::setprecision(1);
+
+	if(!this->player->getFireRateMAX())
+	{
+		fireRateStream << "Bullets/s: " << this->player->getBulletsPerSecond();
+	}
+	else
+	{
+		fireRateStream << "Bullets/s: MAX";
+	}
+	this->fireRateText.setString(fireRateStream.str());
 }
 
 

@@ -35,6 +35,7 @@ private:
 
 	float attackCooldown;
 	float attackCooldownMax;
+	float bulletsPerSecond;
 
 	float damage;
 
@@ -84,6 +85,8 @@ public:
 	const int& getHpMax() const;
 	const float& getMoveSpeed() const;
 	const float& getDamage() const;
+	const float& getAttackCooldown() const;
+	const float& getBulletsPerSecond() const;
 	const bool getFireRateMAX() const;
 	const bool getDamageMAX() const;
 

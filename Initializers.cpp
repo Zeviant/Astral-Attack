@@ -437,27 +437,29 @@ void Game::initializeGUI()
 	this->pointText.setPosition(25.f, 15.f);
 	this->pointText.setString("ERROR");
 
-	//Initialize point text
+	//Initialize money text
 	this->coinText.setFont(this->font);
 	this->coinText.setCharacterSize(35);
-	this->coinText.setStyle(sf::Text::Bold);
-	this->coinText.setFillColor(sf::Color::Black);
-	this->coinText.setOutlineColor(sf::Color::White);
-	this->coinText.setOutlineThickness(2.5f);
+	this->coinText.setFillColor(sf::Color::White);
+	// this->coinText.setStyle(sf::Text::Bold);
+	// this->coinText.setFillColor(sf::Color::Black);
+	// this->coinText.setOutlineColor(sf::Color::White);
+	// this->coinText.setOutlineThickness(2.5f);
 	this->coinText.setString("ERROR");
-	this->coinText.setPosition(15.f, 740.f);
+	this->coinText.setPosition(15.f, 750.f);
 
 	// Initialize kill counter text
 	this->killCounterText.setFont(this->font);
 	this->killCounterText.setCharacterSize(35);
-	this->killCounterText.setStyle(sf::Text::Bold);
-	this->killCounterText.setFillColor(sf::Color::Black);
-	this->killCounterText.setOutlineColor(sf::Color::White);
-	this->killCounterText.setOutlineThickness(2.5f);
+	this->killCounterText.setFillColor(sf::Color::White);
+	//this->killCounterText.setStyle(sf::Text::Bold);
+	//this->killCounterText.setFillColor(sf::Color::Black);
+	//this->killCounterText.setOutlineColor(sf::Color::White);
+	//this->killCounterText.setOutlineThickness(2.5f);
 	this->killCounterText.setString("ERROR");
-	this->killCounterText.setPosition(15.f, 700.f);
+	this->killCounterText.setPosition(15.f, 720.f);
 
-	// Initialize kill counter text
+	// Initialize shield counter text
 	this->shieldText.setFont(this->font);
 	this->shieldText.setCharacterSize(71);
 	this->shieldText.setStyle(sf::Text::Bold);
@@ -469,6 +471,20 @@ void Game::initializeGUI()
 		this->shieldIcon.getPosition().x,
 		this->shieldIcon.getPosition().y
 	);
+
+	// Initialize damage text
+	this->damageText.setFont(this->font);
+	this->damageText.setCharacterSize(32);
+	this->damageText.setFillColor(sf::Color::White);
+	this->damageText.setString("ERROR");
+	this->damageText.setPosition(15.f, 660.f);
+
+	// Initialize fire rate text
+	this->fireRateText.setFont(this->font);
+	this->fireRateText.setCharacterSize(32);
+	this->fireRateText.setFillColor(sf::Color::White);
+	this->fireRateText.setString("ERROR");
+	this->fireRateText.setPosition(15.f, 690.f);
 
 	// Initialize game title
 	this->gameTitle.setFont(this->titleFont);
@@ -1512,7 +1528,7 @@ void Game::initializeStage()
 
 void Game::initializeEnemy()
 {
-	this->boss = new Boss(125.f, 10.f, 1);
+	this->boss = new Boss(150.f, 10.f, 1);
 	this->bossIsActive = false;
 	this->bossDefeated = false;
 
@@ -1545,7 +1561,7 @@ void Game::initializeSpawnRates()
 	this->deathBeamSpawnRate = 0.f;
 
 	this->healthItemSpawnRate = 0.0167f;
-	this->dpsItemSpawnRate = 0.125f;
+	this->dpsItemSpawnRate = 0.1f;
 
 }
 

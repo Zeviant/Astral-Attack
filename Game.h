@@ -51,6 +51,8 @@ private:
     sf::Text coinText;
     sf::Text killCounterText;
     sf::Text shieldText;
+    sf::Text damageText;
+    sf::Text fireRateText;
 
     sf::Font titleFont;
     sf::Text gameTitle;
