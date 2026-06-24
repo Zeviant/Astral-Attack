@@ -89,10 +89,10 @@ void Game::updateInput()
 		this->gameState = PAUSED;
 		this->stageMusic.pause();
 	}
-	
+
 	// DEBUG INPUTS
 
-	bool debugMode = true;
+	bool debugMode = false;
 	if (debugMode == true)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
@@ -113,7 +113,6 @@ void Game::updateInput()
 			elapsedTime = elapsedTime + 1.f;
 		}
 	}
-	
 }
 
 void Game::updateBackground()
