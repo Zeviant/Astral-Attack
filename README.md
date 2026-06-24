@@ -6,6 +6,8 @@ Astral Attack is a space shooter made in C++ with SFML.
 
 Move between four lanes, destroy enemy ships, collect power-ups, and fight the boss at the end of each stage.
 
+Full Playthrough: https://www.youtube.com/watch?v=pP7hGJ79KSM
+
 ## Gameplay
 
 ![Astral Attack gameplay](Screenshots_for_readme/Gameplayscreen.png)
