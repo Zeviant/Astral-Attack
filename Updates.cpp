@@ -90,10 +90,27 @@ void Game::updateInput()
 		this->stageMusic.pause();
 	}
 
+	if (!this->debugMode)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num9) || sf::Keyboard::isKeyPressed(sf::Keyboard::Numpad9))
+		{
+			this->debugActivationTimer += 1.f / 60.f;
+			if (this->debugActivationTimer >= 10.f)
+			{
+				this->debugMode = true;
+				this->debugActivationTimer = 0.f;
+				this->clangHit.play();
+			}
+		}
+		else
+		{
+			this->debugActivationTimer = 0.f;
+		}
+	}
+
 	// DEBUG INPUTS
 
-	bool debugMode = false;
-	if (debugMode == true)
+	if (this->debugMode)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 		{
@@ -165,13 +182,6 @@ void Game::updateGUI()
 		if (gameData.highScore < points)
 		{
 			gameData.highScore = points;
-			updateGameData(gameData);
-		}
-		if (gameData.highScore >= 500000)
-		{
-			gameData.blackship = "ACQUIRED";
-			gameData.blackbullet = "ACQUIRED";
-			gameData.whitefire = "ACQUIRED";
 			updateGameData(gameData);
 		}
 		std::stringstream ss4;
@@ -1132,13 +1142,6 @@ void Game::updateEndScreen()
 		if (gameData.highScore < points)
 		{
 			gameData.highScore = points;
-			updateGameData(gameData);
-		}
-		if (gameData.highScore >= 500000)
-		{
-			gameData.blackship = "ACQUIRED";
-			gameData.blackbullet = "ACQUIRED";
-			gameData.whitefire = "ACQUIRED";
 			updateGameData(gameData);
 		}
 

@@ -436,7 +436,7 @@ void Game::renderShopMenu()
 			break;
 		case 4:
 			this->blackbulletSelect.setOutlineColor(sf::Color::Yellow);
-			this->objectPrice.setString("Buy all shop items");
+			this->objectPrice.setString("Beat the game in NORMAL mode");
 			if (gameData.blackbullet == "ACQUIRED")
 			{
 				this->objectPrice.setString("Acquired");

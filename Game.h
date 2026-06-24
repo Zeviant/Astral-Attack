@@ -131,6 +131,8 @@ private:
     float bossAttackCooldownMax;
     bool startShooting;
     bool bossDefeated;
+    bool debugMode;
+    float debugActivationTimer;
 
     // Items
     float healthItemSpawnTimer;

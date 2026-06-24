@@ -35,6 +35,8 @@ void Game::initialize()
 	this->initializeQuitConfirmationMenu();
 	this->initializeEndScreen();
 
+	this->debugMode = false;
+	this->debugActivationTimer = 0.f;
 	this->gameState = MAIN_MENU; // Set initial game state to MAIN_MENU
 	this->prevgameState = MAIN_MENU;
 	this->selectedMenuItem = 0;  // Initialize the selected menu item to the first item
@@ -235,29 +237,15 @@ void Game::updateShopUnlocks()
 		saveChanged = true;
 	}
 
-	if (this->gameData.hellVictory && this->gameData.whitefire != "ACQUIRED")
+	if (this->gameData.normalVictory && this->gameData.blackbullet != "ACQUIRED")
 	{
-		this->gameData.whitefire = "ACQUIRED";
+		this->gameData.blackbullet = "ACQUIRED";
 		saveChanged = true;
 	}
 
-	const bool allPurchasableItemsAcquired =
-		this->gameData.bluebullet == "ACQUIRED" &&
-		this->gameData.greenbullet == "ACQUIRED" &&
-		this->gameData.yellowbullet == "ACQUIRED" &&
-		this->gameData.purplebullet == "ACQUIRED" &&
-		this->gameData.whitebullet == "ACQUIRED" &&
-		this->gameData.blueship == "ACQUIRED" &&
-		this->gameData.greenship == "ACQUIRED" &&
-		this->gameData.yellowship == "ACQUIRED" &&
-		this->gameData.purpleship == "ACQUIRED" &&
-		this->gameData.redship == "ACQUIRED" &&
-		this->gameData.yellowfire == "ACQUIRED" &&
-		this->gameData.greenfire == "ACQUIRED";
-
-	if (allPurchasableItemsAcquired && this->gameData.blackbullet != "ACQUIRED")
+	if (this->gameData.hellVictory && this->gameData.whitefire != "ACQUIRED")
 	{
-		this->gameData.blackbullet = "ACQUIRED";
+		this->gameData.whitefire = "ACQUIRED";
 		saveChanged = true;
 	}
 
