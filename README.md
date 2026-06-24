@@ -14,12 +14,12 @@ Full Playthrough: https://www.youtube.com/watch?v=pP7hGJ79KSM
 ![Astral Attack gameplay](Screenshots_for_readme/Boss2.png)
 ![The player with active shield](Screenshots_for_readme/Shield_effect.png)
 
-- Destroy enemies by shooting bullets at them.
+- Shoot bullets to defeat enemies and bosses.
 - Collect power-up orbs to heal and become stronger.
-- Get kills to gain shields.
+- Accumulate kills to obtain shields.
 - Use shields to become temporarily invulnerable.
-- Complete the three stages and defeat each boss.
-- Choose between three difficulty settings.
+- Complete the three stages and defeat all bosses.
+- Choose between three difficulty settings (third is unlocked after beating the game in normal mode).
 
 ## Shop
 
@@ -33,7 +33,7 @@ Gameplay:
 - **Left / Right:** Change lanes
 - **Up / Down:** Move within a lane
 - **Z:** Shoot
-- **X:** Use a shield
+- **X:** Activate shield
 - **P or Escape:** Pause
 
 Menu:
@@ -43,7 +43,7 @@ Menu:
 
 ## Running the game
 
-Download the Windows release, extract the full ZIP file, and launch the game.
+Download the Windows release, extract the full ZIP file, and launch 'Astral Attack.exe'.
 
 ## Built with
 
