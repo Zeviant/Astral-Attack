@@ -255,7 +255,7 @@ void Game::updateDifficulty()
 			this->tripleMeteorChance = 0.f;
 			this->dpsItemSpawnRate = 0.075f;
 			this->healthItemSpawnTimer = 0.f;
-			this->boss = new Boss(400.f, 10.5f, 2);
+			this->boss = new Boss(375.f, 10.5f, 2);
 			cutscene = false;
 		}
 

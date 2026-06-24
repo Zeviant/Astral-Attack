@@ -12,7 +12,7 @@ void Enemy::initializeVariables()
 
 	// Initialize animation variables
 	this->animationTimer = 0.f;
-	this->animationInterval = 0.5f; // Change frame every 0.2 seconds
+	this->animationInterval = 0.5f;
 	this->currentFrame = 0;
 }
 

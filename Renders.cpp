@@ -3,51 +3,6 @@
 
 // All render functions are here
 
-void Game::renderCreditsMenu()
-{
-	constexpr float listTop = 155.f;
-	constexpr float listBottom = 710.f;
-	constexpr float lineHeight = 43.f;
-	const float visibleHeight = listBottom - listTop;
-	const float contentHeight = static_cast<float>(this->creditLines.size()) * lineHeight;
-	const float maxScroll = std::max(0.f, contentHeight - visibleHeight);
-	const float selectedPosition = static_cast<float>(this->selectedCreditLine) * lineHeight;
-	const float scrollOffset = std::clamp(selectedPosition - visibleHeight / 2.f, 0.f, maxScroll);
-
-	this->window->draw(this->startMenuBackground);
-	this->window->draw(this->pausesettingsBackground);
-	this->window->draw(this->creditsTitle);
-
-	for (std::size_t i = 0; i < this->creditLines.size(); ++i)
-	{
-		const float y = listTop + static_cast<float>(i) * lineHeight - scrollOffset;
-		if (y < listTop || y > listBottom - lineHeight)
-		{
-			continue;
-		}
-
-		const bool isHeading = this->creditLines[i].url.empty();
-		this->creditLineText.setString(this->creditLines[i].label);
-		this->creditLineText.setCharacterSize(isHeading ? 32 : 27);
-		this->creditLineText.setStyle(isHeading ? sf::Text::Bold : sf::Text::Regular);
-		if (!isHeading && this->creditLineText.getGlobalBounds().width > 900.f)
-		{
-			this->creditLineText.setCharacterSize(22);
-		}
-		this->creditLineText.setFillColor(
-			static_cast<int>(i) == this->selectedCreditLine ? sf::Color::Yellow : sf::Color::White
-		);
-		this->creditLineText.setPosition(
-			this->window->getSize().x / 2.f - this->creditLineText.getGlobalBounds().width / 2.f,
-			y
-		);
-		this->window->draw(this->creditLineText);
-	}
-
-	this->window->draw(this->creditsStatusText);
-	this->window->draw(this->creditsInstructionsText);
-}
-
 void Game::renderGUI()
 {
 	this->window->draw(this->pointText);
@@ -583,6 +538,51 @@ void Game::renderQuitConfirmationMenu()
 	this->window->draw(areYouSureQuestion);
 	this->window->draw(yesCloseApplication);
 	this->window->draw(noKeepPlaying);
+}
+
+void Game::renderCreditsMenu()
+{
+	constexpr float listTop = 155.f;
+	constexpr float listBottom = 710.f;
+	constexpr float lineHeight = 43.f;
+	const float visibleHeight = listBottom - listTop;
+	const float contentHeight = static_cast<float>(this->creditLines.size()) * lineHeight;
+	const float maxScroll = std::max(0.f, contentHeight - visibleHeight);
+	const float selectedPosition = static_cast<float>(this->selectedCreditLine) * lineHeight;
+	const float scrollOffset = std::clamp(selectedPosition - visibleHeight / 2.f, 0.f, maxScroll);
+
+	this->window->draw(this->startMenuBackground);
+	this->window->draw(this->pausesettingsBackground);
+	this->window->draw(this->creditsTitle);
+
+	for (std::size_t i = 0; i < this->creditLines.size(); ++i)
+	{
+		const float y = listTop + static_cast<float>(i) * lineHeight - scrollOffset;
+		if (y < listTop || y > listBottom - lineHeight)
+		{
+			continue;
+		}
+
+		const bool isHeading = this->creditLines[i].url.empty();
+		this->creditLineText.setString(this->creditLines[i].label);
+		this->creditLineText.setCharacterSize(isHeading ? 32 : 27);
+		this->creditLineText.setStyle(isHeading ? sf::Text::Bold : sf::Text::Regular);
+		if (!isHeading && this->creditLineText.getGlobalBounds().width > 900.f)
+		{
+			this->creditLineText.setCharacterSize(22);
+		}
+		this->creditLineText.setFillColor(
+			static_cast<int>(i) == this->selectedCreditLine ? sf::Color::Yellow : sf::Color::White
+		);
+		this->creditLineText.setPosition(
+			this->window->getSize().x / 2.f - this->creditLineText.getGlobalBounds().width / 2.f,
+			y
+		);
+		this->window->draw(this->creditLineText);
+	}
+
+	this->window->draw(this->creditsStatusText);
+	this->window->draw(this->creditsInstructionsText);
 }
 
 void Game::renderPauseMenu()
