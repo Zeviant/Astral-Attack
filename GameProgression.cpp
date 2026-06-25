@@ -409,8 +409,8 @@ void Game::updateDifficulty()
 			{
 				this->deathBeamSpawnRate = 0.13f;
 				this->horizontalEnemySpawnRate = 0.5f;
+			}
 		}
-
 
 		if (bossIsActive && this->boss->getHp() <= 120 && !stageTransition)
 		{
