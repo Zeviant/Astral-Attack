@@ -8,6 +8,7 @@ struct GameData {
     bool normalVictory = false;
     bool gameCompleted = false;
     bool hellVictory = false;
+    int difficulty = 1;
     int equipedbullet = 0;
     std::string redbullet = "ACQUIRED";
     std::string bluebullet = "NULL";

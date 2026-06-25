@@ -288,6 +288,7 @@ private:
     sf::Text tutorialText;
     sf::Text quitText;
     sf::Text resetText;
+    sf::Text menuDifficulty;
     sf::Text menuHighScore;
     bool quitConfirmationScreenActive;
     sf::Text areYouSureQuestion;

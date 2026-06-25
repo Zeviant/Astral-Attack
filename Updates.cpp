@@ -883,7 +883,7 @@ void Game::updateCombat()
 			{
 				// Enemy's bullet hits the player
 				if (!this->player->isInvincible()) {
-					this->player->loseHp(2);
+					this->player->loseHp(this->difficulty == 0 ? 1 : 2);
 					this->criticalHit.play();
 				}
 			}
@@ -893,7 +893,7 @@ void Game::updateCombat()
 		{
 			// Boss hits the player
 			if (!this->player->isInvincible()) {
-				this->player->loseHp(2);
+				this->player->loseHp(this->difficulty == 0 ? 1 : 2);
 				this->criticalHit.play();
 			}
 		}
@@ -921,42 +921,7 @@ void Game::updateBoss()
 
 void Game::updateHealthBar(int hp)
 {
-	if (difficulty == 0)
-	{
-		switch(hp)
-		{
-		case 0:
-			this->playerHealthBar.setTexture(*this->textures["EMPTYHEALTHBAR"]);
-			break;
-		case 1:
-		case 2:
-			this->playerHealthBar.setTexture(*this->textures["1HPHEALTHBAR"]);
-			break;
-		case 3:
-		case 4:
-			this->playerHealthBar.setTexture(*this->textures["2HPHEALTHBAR"]);
-			break;
-		case 5:
-		case 6:
-			this->playerHealthBar.setTexture(*this->textures["3HPHEALTHBAR"]);
-			break;
-		case 7:
-		case 8:
-			this->playerHealthBar.setTexture(*this->textures["4HPHEALTHBAR"]);
-			break;
-		case 9:
-		case 10:
-		case 11:
-			this->playerHealthBar.setTexture(*this->textures["FULLHEALTHBAR"]);
-			break;
-		default:
-			this->playerHealthBar.setTexture(*this->textures["EMPTYHEALTHBAR"]);
-			break;
-		}
-	
-	}
-
-	if (difficulty == 1)
+	if (difficulty == 0 || difficulty == 1)
 	{
 		switch (hp)
 		{

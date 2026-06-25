@@ -212,6 +212,22 @@ void Game::renderStartMenu()
 	std::stringstream ss5;
 	ss5 << "High Score: " << this->gameData.highScore;
 	this->menuHighScore.setString(ss5.str());
+	switch (this->difficulty)
+	{
+	case 0:
+		this->menuDifficulty.setString("Difficulty: Easy");
+		break;
+	case 1:
+		this->menuDifficulty.setString("Difficulty: Normal");
+		break;
+	case 2:
+		this->menuDifficulty.setString("Difficulty: HELL");
+		break;
+	default:
+		this->menuDifficulty.setString("Difficulty: ???");
+		break;
+	}
+	this->window->draw(this->menuDifficulty);
 	this->window->draw(this->menuHighScore);
 
 	if (this->quitConfirmationScreenActive)

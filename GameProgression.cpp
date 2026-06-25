@@ -248,7 +248,7 @@ void Game::updateDifficulty()
 			checkerThree = true;
 			checkerFour = true;
 			checkerFive = true;
-			this->healthItemSpawnRate = 0.0167f;
+			this->healthItemSpawnRate = this->difficulty == 0 ? 0.0334f : 0.0167f;
 			this->enemySpawnRate = 0.f;
 			this->horizontalEnemySpawnRate = 0.f;
 			this->meteorSpawnRate = 0.f;
@@ -542,7 +542,7 @@ void Game::updateDifficulty()
 			checkerFour = true;
 			checkerFive = true;
 			checkerSix = true;
-			this->healthItemSpawnRate = 0.0167f;
+			this->healthItemSpawnRate = this->difficulty == 0 ? 0.0334f : 0.0167f;
 			this->enemySpawnRate = 0.f;
 			this->horizontalEnemySpawnRate = 0.f;
 			this->meteorSpawnRate = 0.f;

@@ -682,6 +682,8 @@ void Game::initializeGameData()
 	gameData.normalVictory = readData.normalVictory;
 	gameData.gameCompleted = readData.gameCompleted;
 	gameData.hellVictory = readData.hellVictory;
+	gameData.difficulty = readData.difficulty;
+	this->difficulty = gameData.difficulty;
 	gameData.equipedbullet = readData.equipedbullet;
 	gameData.redbullet = readData.redbullet;
 	gameData.bluebullet = readData.bluebullet;
@@ -803,7 +805,14 @@ void Game::initializeStartMenu()
 		this->window->getSize().y / 2.f - this->quitText.getGlobalBounds().height / 2.f + 200.f
 	);
 
-	// Initialize Quit menu item
+	// Initialize main menu difficulty indicator
+	this->menuDifficulty.setFont(this->font);
+	this->menuDifficulty.setCharacterSize(47);
+	this->menuDifficulty.setFillColor(sf::Color::White);
+	this->menuDifficulty.setString("Difficulty: Normal");
+	this->menuDifficulty.setPosition(10.f, 625.f);
+
+	// Initialize High Score menu item
 	this->menuHighScore.setFont(this->font);
 	this->menuHighScore.setCharacterSize(47);
 	this->menuHighScore.setFillColor(sf::Color::White);
@@ -1172,7 +1181,7 @@ void Game::initializeTutorialMenu()
 	this->keybindingsExplanation.setFont(this->font);
 	this->keybindingsExplanation.setCharacterSize(33);
 	this->keybindingsExplanation.setFillColor(sf::Color::White);
-	this->keybindingsExplanation.setString("Left/Right --> Move between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal for 1 hp, spawns every minute \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Coins\n");
+	this->keybindingsExplanation.setString("Left/Right --> Move between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal for 1 hp, spawns every minute (30s in easy mode) \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Coins\n");
 	this->keybindingsExplanation.setPosition(
 		this->window->getSize().x / 2.f - this->keybindingsExplanation.getGlobalBounds().width / 2.f,
 		this->window->getSize().y / 2.f - this->keybindingsExplanation.getGlobalBounds().height / 2.f
@@ -1581,7 +1590,7 @@ void Game::initializeSpawnRates()
 	this->horizontalEnemySpawnRate = 0.f;
 	this->deathBeamSpawnRate = 0.f;
 
-	this->healthItemSpawnRate = 0.0167f;
+	this->healthItemSpawnRate = this->difficulty == 0 ? 0.0334f : 0.0167f;
 	this->dpsItemSpawnRate = 0.1f;
 
 }

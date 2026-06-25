@@ -721,11 +721,15 @@ void Game::handleDifficultyMenuInput(const sf::Event& ev)
 		case 0:
 			this->difficultySetSound.play();
 			this->difficulty = 0;
+			this->gameData.difficulty = this->difficulty;
+			updateGameData(this->gameData);
 			std::cout << difficulty;
 			break;
 		case 1:
 			this->difficultySetSound.play();
 			this->difficulty = 1;
+			this->gameData.difficulty = this->difficulty;
+			updateGameData(this->gameData);
 			std::cout << difficulty;
 			break;
 		case 2:
@@ -733,6 +737,8 @@ void Game::handleDifficultyMenuInput(const sf::Event& ev)
 			{
 			this->difficultySetSound.play();
 				this->difficulty = 2;
+				this->gameData.difficulty = this->difficulty;
+				updateGameData(this->gameData);
 				std::cout << difficulty;
 			}
 			else

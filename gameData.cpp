@@ -86,6 +86,7 @@ void updateGameData(const GameData& data)
         outFile << "normalVictory = " << data.normalVictory << '\n';
         outFile << "gameCompleted = " << data.gameCompleted << '\n';
         outFile << "hellVictory = " << data.hellVictory << '\n';
+        outFile << "difficulty = " << data.difficulty << '\n';
         outFile << "equipedbullet = " << data.equipedbullet << '\n';
         outFile << "redbullet = " << data.redbullet << '\n';
         outFile << "bluebullet = " << data.bluebullet << '\n';
@@ -172,6 +173,17 @@ GameData readFromFile() {
         else if (line.find("hellVictory = ") == 0)
         {
             if (!parseBoolean(std::string_view(line).substr(14), data.hellVictory)) {
+                reportInvalidValue(line);
+                repairSave = true;
+            }
+        }
+
+        else if (line.find("difficulty = ") == 0) {
+            int value = 1;
+            if (parseNumber(std::string_view(line).substr(13), value) && value >= 0 && value <= 2) {
+                data.difficulty = value;
+            }
+            else {
                 reportInvalidValue(line);
                 repairSave = true;
             }

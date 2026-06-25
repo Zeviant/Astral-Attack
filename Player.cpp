@@ -16,7 +16,7 @@ void Player::initializeVariables()
 
     if(this->difficulty == 0)
     {
-        this->hpMax = 10;
+        this->hpMax = 5;
         this->hp = this->hpMax;
     }
 
@@ -436,24 +436,7 @@ void Player::setAttackCooldown(float val)
 
 void Player::updateSprite()
 {
-    if(difficulty == 0)
-    {
-        if (this->hp == 5 or this->hp == 4 or this->hp == 3)
-        {
-            this->ship.setTexture(this->shipDamaged);
-        }
-        else if (this->hp <= 2)
-        {
-            this->ship.setTexture(this->shipVeryDamaged);
-        }
-        else
-        {
-            this->ship.setTexture(this->shipFull);
-        }
-    
-    }
-
-    if(difficulty == 1)
+    if(difficulty == 0 || difficulty == 1)
     {
         if (this->hp == 3 or this->hp == 2)
         {

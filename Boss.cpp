@@ -252,7 +252,8 @@ void Boss::update(float deltaTime)
         // Move slowly down/up to the loop center
         sf::Vector2f currentPosition = bossSprite.getPosition();
         sf::Vector2f direction = loopCenter - currentPosition;
-        float distance = moveSpeed * deltaTime;
+        const float entranceSpeed = type == 2 ? moveSpeed * 0.927f : moveSpeed;
+        float distance = entranceSpeed * deltaTime;
         if (distance >= std::sqrt(direction.x * direction.x + direction.y * direction.y))
         {
             isMovingInLoop = true;
