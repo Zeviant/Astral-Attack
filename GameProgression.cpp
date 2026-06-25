@@ -151,6 +151,7 @@ void Game::updateDifficulty()
 			if (difficulty == 0) {
 				this->points = points + 25000;
 				this->addCoins(250);
+				this->enemyKillCounter = enemyKillCounter + 50;
 			}
 			if (difficulty == 1)
 			{
@@ -380,7 +381,6 @@ void Game::updateDifficulty()
 			if(difficulty == 0)
 			{
 				this->deathBeamSpawnRate = 0.05f;
-				this->horizontalEnemySpawnRate = 0.04f;
 			}
 			if(difficulty == 1) 
 			{
@@ -398,7 +398,7 @@ void Game::updateDifficulty()
 		{
 			if (difficulty == 0)
 			{
-				this->horizontalEnemySpawnRate = 0.1f;
+				this->horizontalEnemySpawnRate = 0.05f;
 			}
 			if(difficulty == 1) 
 			{
@@ -438,7 +438,7 @@ void Game::updateDifficulty()
 			{
 				this->points = points + 50000;
 				this->addCoins(500);
-
+				this->enemyKillCounter = enemyKillCounter + 50;
 			}
 
 			if (difficulty == 1) 
@@ -451,7 +451,6 @@ void Game::updateDifficulty()
 			{
 				this->points = points + 150000;
 				this->addCoins(1500);
-				this->enemyKillCounter = enemyKillCounter + 20;
 			}
 
 
@@ -779,7 +778,14 @@ void Game::updateDifficulty()
 
 		if (bossIsActive && boss->getHp() <= 800 && boss->getHp() >= 700)
 		{
-			this->deathBeamSpawnRate = 0.06f;
+			if(difficulty == 0)
+			{
+				this->deathBeamSpawnRate = 0.02f;
+			}
+			if(difficulty == 1 or difficulty == 2)
+			{
+				this->deathBeamSpawnRate = 0.06f;
+			}
 			this->enemySpawnRate = 0.25f;
 			this->horizontalEnemySpawnRate = 0.35f;
 		}
