@@ -239,7 +239,7 @@ void Game::initializeSounds()
 
 	this->menuSound.setBuffer(this->menuClick);
 
-	if (!this->playerHitBuffer.loadFromFile("Sounds/Playerhit.flac"))
+	if (!this->playerHitBuffer.loadFromFile("Sounds/Playerhit.wav"))
 	{
 		std::cout << "SOUND::PLAYER_HIT::FAILED_TO_LOAD" << "\n";
 	}

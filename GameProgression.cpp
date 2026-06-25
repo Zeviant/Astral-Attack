@@ -322,7 +322,7 @@ void Game::updateDifficulty()
 			if (difficulty == 0)
 			{
 				this->doubleMeteorChance = 20.f;
-				this->horizontalEnemySpawnRate = 0.45f;
+				this->horizontalEnemySpawnRate = 0.40f;
 			
 			}
 
@@ -379,7 +379,7 @@ void Game::updateDifficulty()
 		{
 			if(difficulty == 0)
 			{
-				this->deathBeamSpawnRate = 0.068f;
+				this->deathBeamSpawnRate = 0.05f;
 				this->horizontalEnemySpawnRate = 0.04f;
 			}
 			if(difficulty == 1) 
@@ -398,56 +398,25 @@ void Game::updateDifficulty()
 		{
 			if (difficulty == 0)
 			{
-				this->horizontalEnemySpawnRate = 0.06f;
-				this->deathBeamSpawnRate = 0.0765f;
-			
+				this->horizontalEnemySpawnRate = 0.1f;
 			}
-
-			if (difficulty == 1)
+			if(difficulty == 1) 
 			{
-				this->horizontalEnemySpawnRate = 0.08f;
-				this->deathBeamSpawnRate = 0.1105f;
+				this->deathBeamSpawnRate = 0.11f;
+				this->horizontalEnemySpawnRate = 0.35f;
 			}
-
-			if (difficulty == 2)
+			if(difficulty == 2)
 			{
-				this->horizontalEnemySpawnRate = 0.12f;
-				this->deathBeamSpawnRate = 0.1275f;
-			
-			}
+				this->deathBeamSpawnRate = 0.13f;
+				this->horizontalEnemySpawnRate = 0.5f;
 		}
 
 
 		if (bossIsActive && this->boss->getHp() <= 120 && !stageTransition)
 		{
-			if (difficulty == 0)
-			{
-				this->horizontalEnemySpawnRate = 0.1f;
-			}
-			if (difficulty == 1) 
-			{
-				this->horizontalEnemySpawnRate = 0.13f;
-			}
 			if (difficulty == 2)
 			{
-				this->horizontalEnemySpawnRate = 0.16f;
 				this->enemySpawnRate = 0.1f;
-			}
-		}
-
-		if(bossIsActive && this->boss->getHp() <= 50 && !stageTransition)
-		{
-			if (difficulty == 0)
-			{
-				this->horizontalEnemySpawnRate = 0.15f;
-			}
-			if (difficulty == 1)
-			{
-				this->horizontalEnemySpawnRate = 0.2f;
-			}
-			if (difficulty == 2)
-			{
-				this->horizontalEnemySpawnRate = 0.25f;
 			}
 		}
 

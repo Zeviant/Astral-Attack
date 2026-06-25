@@ -367,10 +367,10 @@ void Boss::moveInLoop(float deltaTime)
         static float timeElapsed = 0.0f;
         static float changeDirectionInterval = 30.0f;
 
-        if (health <= 10)
+        if (health <= 25)
         {
-            Xincrease = Xincrease + 0.25f;
-            Yincrease = Yincrease + 0.25f;
+            Xincrease = Xincrease + 0.12f;
+            Yincrease = Yincrease + 0.12f;
         }
         else
         {
