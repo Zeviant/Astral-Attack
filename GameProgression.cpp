@@ -649,7 +649,7 @@ void Game::updateDifficulty()
 		{
 			if(difficulty == 0)
 			{
-				this->enemySpawnRate = 0.9f;
+				this->enemySpawnRate = 0.75f;
 				this->deathBeamSpawnRate = 0.08f;
 				this->doubleMeteorChance = 0.f;
 				this->horizontalEnemySpawnRate = 0.8f;
@@ -786,7 +786,10 @@ void Game::updateDifficulty()
 
 		if (bossIsActive && boss->getHp() <= 700 && boss->getHp() >= 600)
 		{
-			this->meteorSpawnRate = 0.25f;
+			if(difficulty == 1 or difficulty == 2)
+			{
+				this->meteorSpawnRate = 0.25f;
+			}
 		}
 
 
