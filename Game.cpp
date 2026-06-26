@@ -37,6 +37,7 @@ void Game::initialize()
 
 	this->debugMode = false;
 	this->debugActivationTimer = 0.f;
+	this->suppressShotUntilZReleased = false;
 	this->gameState = MAIN_MENU; // Set initial game state to MAIN_MENU
 	this->prevgameState = MAIN_MENU;
 	this->selectedMenuItem = 0;  // Initialize the selected menu item to the first item

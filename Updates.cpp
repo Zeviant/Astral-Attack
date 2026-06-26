@@ -55,8 +55,12 @@ void Game::updateInput()
 
 	}
 
+	if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Z))
+	{
+		this->suppressShotUntilZReleased = false;
+	}
 
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && this->player->canAttack())
+	if (!this->suppressShotUntilZReleased && sf::Keyboard::isKeyPressed(sf::Keyboard::Z) && this->player->canAttack())
 	{
 		if (enemyKillCounter < 400)
 		{

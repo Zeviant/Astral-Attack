@@ -38,6 +38,7 @@ void Game::handleMainMenuInput(const sf::Event& ev)
 		case 0:
 			this->initializeMusic();
 			this->initializePlayer();
+			this->suppressShotUntilZReleased = sf::Keyboard::isKeyPressed(sf::Keyboard::Z);
 			this->gameState = GAMEPLAY;
 			this->menuMusic.stop();
 			this->clock.restart();

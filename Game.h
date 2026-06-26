@@ -133,6 +133,7 @@ private:
     bool bossDefeated;
     bool debugMode;
     float debugActivationTimer;
+    bool suppressShotUntilZReleased;
 
     // Items
     float healthItemSpawnTimer;
