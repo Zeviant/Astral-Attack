@@ -753,7 +753,7 @@ void Game::initializeStartMenu()
 	this->shopText.setString("Shop");
 	this->shopText.setPosition(
 		this->window->getSize().x / 2.f - this->shopText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->shopText.getGlobalBounds().height / 2.f - 50.f
+		this->window->getSize().y / 2.f - this->shopText.getGlobalBounds().height / 2.f + 50.f
 	);
 
 	// Initialize Settings menu item
@@ -763,7 +763,7 @@ void Game::initializeStartMenu()
 	this->settingsText.setString("Settings");
 	this->settingsText.setPosition(
 		this->window->getSize().x / 2.f - this->settingsText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->settingsText.getGlobalBounds().height / 2.f
+		this->window->getSize().y / 2.f - this->settingsText.getGlobalBounds().height / 2.f + 100.f
 	);
 
 	// Initialize Settings menu item
@@ -773,7 +773,7 @@ void Game::initializeStartMenu()
 	this->tutorialText.setString("Tutorial");
 	this->tutorialText.setPosition(
 		this->window->getSize().x / 2.f - this->tutorialText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->tutorialText.getGlobalBounds().height / 2.f + 50.f
+		this->window->getSize().y / 2.f - this->tutorialText.getGlobalBounds().height / 2.f - 50.f
 	);
 
 	this->creditsText.setFont(this->font);
@@ -782,7 +782,7 @@ void Game::initializeStartMenu()
 	this->creditsText.setString("Credits");
 	this->creditsText.setPosition(
 		this->window->getSize().x / 2.f - this->creditsText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->creditsText.getGlobalBounds().height / 2.f + 100.f
+		this->window->getSize().y / 2.f - this->creditsText.getGlobalBounds().height / 2.f + 150.f
 	);
 
 	// Initialize Reset menu item
@@ -792,7 +792,7 @@ void Game::initializeStartMenu()
 	this->resetText.setString("Set Difficulty");
 	this->resetText.setPosition(
 		this->window->getSize().x / 2.f - this->resetText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->resetText.getGlobalBounds().height / 2.f + 150.f
+		this->window->getSize().y / 2.f - this->resetText.getGlobalBounds().height / 2.f
 	);
 
 	// Initialize Quit menu item
@@ -1181,7 +1181,7 @@ void Game::initializeTutorialMenu()
 	this->keybindingsExplanation.setFont(this->font);
 	this->keybindingsExplanation.setCharacterSize(33);
 	this->keybindingsExplanation.setFillColor(sf::Color::White);
-	this->keybindingsExplanation.setString("Left/Right --> Move between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal for 1 hp, spawns every minute (30s in easy mode) \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Coins\n");
+	this->keybindingsExplanation.setString("Left/Right --> Switch between lanes\nUp/Down --> Move vertically within a lane\nZ --> Fire bullets\nX --> Activate shield. Using a shield makes you invulnerable for 3 seconds.\nYou can get more shields by reaching the kills threshold in the left corner \nof the screen. \nRed orbs --> Heal 1hp. In easy: heal 2hp \nPurple orbs --> Damage upgrade \nBlue orbs --> Fire rate upgrade \nYellow orbs --> Bullet speed upgrade & Coins\nGoal --> Survive the 3 stages. The player has a max of 5 hp and loses \nhp when hit.\n");
 	this->keybindingsExplanation.setPosition(
 		this->window->getSize().x / 2.f - this->keybindingsExplanation.getGlobalBounds().width / 2.f,
 		this->window->getSize().y / 2.f - this->keybindingsExplanation.getGlobalBounds().height / 2.f
@@ -1306,10 +1306,9 @@ void Game::initializeDifficultyMenu()
 
 	// Return text
 	this->returnText.setFont(this->font);
-	this->returnText.setCharacterSize(49);
-	this->returnText.setFillColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
-	this->returnText.setOutlineColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
-	this->returnText.setOutlineThickness(1.f);
+	this->returnText.setCharacterSize(47);
+	this->returnText.setFillColor(sf::Color::White);
+	this->returnText.setOutlineThickness(0.f);
 	this->returnText.setString("Return");
 	this->returnText.setPosition(
 		this->window->getSize().x / 2.f - this->returnText.getGlobalBounds().width / 2.f,

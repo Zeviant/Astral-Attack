@@ -83,8 +83,7 @@ void Game::renderDifficultyMenu()
 	this->hardText.setOutlineColor(sf::Color(255, 255, 255, 60));
 	}
 
-	this->returnText.setFillColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
-	this->returnText.setOutlineColor(sf::Color(255, 255, 255, 128)); // Semi-transparent white
+	this->returnText.setFillColor(sf::Color::White);
 
 	switch(currentSelection)
 	{
@@ -112,8 +111,7 @@ void Game::renderDifficultyMenu()
 		break;
 
 	case 3:
-		this->returnText.setFillColor(sf::Color(255, 255, 255, 255)); // Semi-transparent white
-		this->returnText.setOutlineColor(sf::Color(255, 255, 255, 255)); // Semi-transparent white
+		this->returnText.setFillColor(sf::Color::Yellow);
 		break;
 	}
 
@@ -174,21 +172,21 @@ void Game::renderStartMenu()
 			break;
 
 		case 1:
-			this->shopText.setFillColor(sf::Color::Yellow);
+			this->tutorialText.setFillColor(sf::Color::Yellow);
 			break;
 
 		case 2:
-			this->settingsText.setFillColor(sf::Color::Yellow);
+			this->resetText.setFillColor(sf::Color::Yellow);
 			break;
 
 		case 3:
-			this->tutorialText.setFillColor(sf::Color::Yellow);
+			this->shopText.setFillColor(sf::Color::Yellow);
 			break;
 		case 4:
-			this->creditsText.setFillColor(sf::Color::Yellow);
+			this->settingsText.setFillColor(sf::Color::Yellow);
 			break;
 		case 5:
-			this->resetText.setFillColor(sf::Color::Yellow);
+			this->creditsText.setFillColor(sf::Color::Yellow);
 			break;
 		case 6:
 			this->quitText.setFillColor(sf::Color::Yellow);
@@ -197,10 +195,10 @@ void Game::renderStartMenu()
 	}
 
 	// Draw menu items
-	this->window->draw(this->tutorialText);
-	this->window->draw(this->resetText);
 	this->window->draw(this->gameTitle);
 	this->window->draw(this->playText);
+	this->window->draw(this->tutorialText);
+	this->window->draw(this->resetText);
 	this->window->draw(this->shopText);
 	this->window->draw(this->settingsText);
 	this->window->draw(this->creditsText);

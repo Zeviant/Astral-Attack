@@ -47,25 +47,25 @@ void Game::handleMainMenuInput(const sf::Event& ev)
 			this->seconds = 0;
 			break;
 		case 1:
-			this->gameState = SHOP;
+			this->gameState = TUTORIAL;
 			this->selectedMenuItem = 0;
 			break;
 		case 2:
+			this->gameState = DIFFICULTY;
+			this->currentSelection = 0;
+			break;
+		case 3:
+			this->gameState = SHOP;
+			this->selectedMenuItem = 0;
+			break;
+		case 4:
 			this->prevgameState = this->gameState;
 			this->gameState = SETTINGS;
 			this->selectedMenuItem = 0;
 			break;
-		case 3:
-			this->gameState = TUTORIAL;
-			this->selectedMenuItem = 0;
-			break;
-		case 4:
+		case 5:
 			this->gameState = CREDITS;
 			this->selectedMenuItem = 0;
-			break;
-		case 5:
-			this->gameState = DIFFICULTY;
-			this->currentSelection = 0;
 			break;
 		case 6:
 			this->window->close();
