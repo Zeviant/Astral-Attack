@@ -85,9 +85,9 @@ void Game::setBulletColor(int c)
 		}
 		break;
 	case 6:
-		if (!this->textures["BULLET"]->loadFromFile("Textures/Blackbullet.png"))
+		if (!this->textures["BULLET"]->loadFromFile("Textures/Specialredbullet.png"))
 		{
-			std::cout << "TEXTURE::BULLET_WHITE::FAILED_TO_LOAD" << "\n";
+			std::cout << "TEXTURE::BULLET_SPECIAL_RED::FAILED_TO_LOAD" << "\n";
 		}
 		break;
 	}
