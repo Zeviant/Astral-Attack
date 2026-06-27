@@ -753,7 +753,7 @@ void Game::initializeStartMenu()
 	this->shopText.setString("Shop");
 	this->shopText.setPosition(
 		this->window->getSize().x / 2.f - this->shopText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->shopText.getGlobalBounds().height / 2.f + 50.f
+		this->window->getSize().y / 2.f - this->shopText.getGlobalBounds().height / 2.f
 	);
 
 	// Initialize Settings menu item
@@ -792,7 +792,7 @@ void Game::initializeStartMenu()
 	this->resetText.setString("Set Difficulty");
 	this->resetText.setPosition(
 		this->window->getSize().x / 2.f - this->resetText.getGlobalBounds().width / 2.f,
-		this->window->getSize().y / 2.f - this->resetText.getGlobalBounds().height / 2.f
+		this->window->getSize().y / 2.f - this->resetText.getGlobalBounds().height / 2.f + 50.f
 	);
 
 	// Initialize Quit menu item
