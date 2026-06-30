@@ -1438,7 +1438,7 @@ void Game::initializeCreditsMenu()
 	this->creditLineText.setCharacterSize(27);
 
 	this->creditsInstructionsText.setFont(this->font);
-	this->creditsInstructionsText.setCharacterSize(19);
+	this->creditsInstructionsText.setCharacterSize(24);
 	this->creditsInstructionsText.setFillColor(sf::Color::White);
 	this->creditsInstructionsText.setString("UP/DOWN: Select    ENTER: Open link    ESC: Return");
 	this->creditsInstructionsText.setPosition(
@@ -1452,7 +1452,6 @@ void Game::initializeCreditsMenu()
 	this->creditsStatusText.setString("");
 	this->creditsStatusText.setPosition(25.f, 720.f);
 
-	// This shared return label remains on the tutorial screen.
 	this->returnfromcreditsText.setFont(this->font);
 	this->returnfromcreditsText.setCharacterSize(47);
 	this->returnfromcreditsText.setFillColor(sf::Color::Yellow);
@@ -1557,7 +1556,7 @@ void Game::initializeStage()
 
 void Game::initializeEnemy()
 {
-	this->boss = new Boss(120.f, 10.f, 1);
+	this->boss = new Boss(125.f, 10.f, 1);
 	this->bossIsActive = false;
 	this->bossDefeated = false;
 
