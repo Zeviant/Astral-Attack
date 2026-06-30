@@ -131,10 +131,10 @@ void Game::updateDifficulty()
 
 		}
 
-		if (elapsedTime >= 195.f && elapsedTime <= 196.f && startShooting)
+		if (elapsedTime >= 210.f && elapsedTime <= 211.f && startShooting)
 		{
-			this->meteorSpawnRate = 0.8f;
-			this->bossAttackCooldownMax = 30.f;
+			this->meteorSpawnRate = 0.75f;
+			this->bossAttackCooldownMax = 40.f;
 
 		}
 

@@ -1557,7 +1557,7 @@ void Game::initializeStage()
 
 void Game::initializeEnemy()
 {
-	this->boss = new Boss(150.f, 10.f, 1);
+	this->boss = new Boss(120.f, 10.f, 1);
 	this->bossIsActive = false;
 	this->bossDefeated = false;
 
