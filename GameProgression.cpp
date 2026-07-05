@@ -256,7 +256,7 @@ void Game::updateDifficulty()
 			this->tripleMeteorChance = 0.f;
 			this->dpsItemSpawnRate = 0.075f;
 			this->healthItemSpawnTimer = 0.f;
-			this->boss = new Boss(375.f, 10.5f, 2);
+			this->boss = new Boss(320.f, 10.5f, 2);
 			cutscene = false;
 		}
 
@@ -376,7 +376,7 @@ void Game::updateDifficulty()
 			this->updateSoundFXVolume();
 		}
 
-		if(bossIsActive && this->boss->getHp() <= 350 && !stageTransition)
+		if(bossIsActive && this->boss->getHp() <= 300 && !stageTransition)
 		{
 			if(difficulty == 0)
 			{
