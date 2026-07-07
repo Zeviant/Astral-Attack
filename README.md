@@ -6,7 +6,6 @@ Astral Attack is a space shooter made in C++ with SFML.
 
 Move between four lanes, destroy enemy ships, collect power-ups, and fight the boss at the end of each stage.
 
-Play on Itch: https://zeviant.itch.io/astral-attack \
 Full Playthrough: https://www.youtube.com/watch?v=pP7hGJ79KSM
 
 ## Gameplay
@@ -45,6 +44,9 @@ Menu:
 ## Running the game
 
 Download the Windows release, extract the full ZIP file, and launch 'Astral Attack.exe'.
+
+Alternatively, play on Itch.io: \
+https://zeviant.itch.io/astral-attack \
 
 ## Built with
 
