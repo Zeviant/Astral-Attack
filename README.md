@@ -46,7 +46,7 @@ Menu:
 Download the Windows release, extract the full ZIP file, and launch 'Astral Attack.exe'.
 
 Alternatively, play on Itch.io: \
-https://zeviant.itch.io/astral-attack \
+https://zeviant.itch.io/astral-attack
 
 ## Built with
 
